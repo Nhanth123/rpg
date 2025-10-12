@@ -3,6 +3,8 @@ extends CharacterBody3D
 const SPEED = 5.0
 
 @onready var visual : Node3D = $VisualNode
+@onready var animationPlayer = $VisualNode/AnimationPlayer
+
 
 func _physics_process(delta):
 	if not is_on_floor():
@@ -13,9 +15,11 @@ func _physics_process(delta):
 	if direction:
 		velocity.x = direction.x * SPEED
 		velocity.z = direction.z * SPEED
+		animationPlayer.play("LittleAdventurerAndie_Run")
 	else:
 		velocity.x = move_toward(velocity.x, 0 , SPEED)
 		velocity.z = move_toward(velocity.z, 0 , SPEED)
+		animationPlayer.play("LittleAdventurerAndie_Idel")
 		
 	if velocity.length() > 0.2:
 		var lookDir = Vector2(velocity.z, velocity.x)
