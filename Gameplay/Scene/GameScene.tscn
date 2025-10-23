@@ -1,8 +1,10 @@
-[gd_scene load_steps=19 format=3 uid="uid://bv188u353pcw2"]
+[gd_scene load_steps=21 format=3 uid="uid://bv188u353pcw2"]
 
 [ext_resource type="PackedScene" uid="uid://xm3a5j45elv3" path="res://Asset/Scene/GameLevelScene.tscn" id="1_04uql"]
 [ext_resource type="Material" uid="uid://dsxg0h0pajegl" path="res://Asset/Characters/MainCharacter/LittleAdventurerAndie_Material.tres" id="2_2yvkv"]
 [ext_resource type="Script" path="res://Gameplay/Scene/Player.gd" id="2_7ms18"]
+[ext_resource type="PackedScene" uid="uid://xgpsrjv1wwgj" path="res://Asset/Characters/Sword/sword.tscn" id="4_s4o6p"]
+[ext_resource type="PackedScene" uid="uid://d3dw4mj627ytu" path="res://Asset/VFX/Scene/footstep_particle.tscn" id="5_78eib"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ksbdj"]
 resource_name = "Material.001"
@@ -5514,10 +5516,30 @@ material_override = ExtResource("2_2yvkv")
 mesh = SubResource("ArrayMesh_522yp")
 skin = SubResource("Skin_8vbkq")
 
+[node name="BoneAttachment3D" type="BoneAttachment3D" parent="Player/VisualNode/RootNode/LittleAdventurerAndie_GameRig/Skeleton3D"]
+transform = Transform3D(-0.962009, -0.237405, -0.13479, -0.0399462, 0.610829, -0.79075, 0.270062, -0.755326, -0.597111, -0.00973767, 0.00376249, 0.022656)
+bone_name = "DEF-hand.R"
+bone_idx = 67
+
+[node name="Sword" parent="Player/VisualNode/RootNode/LittleAdventurerAndie_GameRig/Skeleton3D/BoneAttachment3D" instance=ExtResource("4_s4o6p")]
+transform = Transform3D(-0.00667074, 0.00340051, -0.0238524, 0.0239986, -0.00125771, -0.00689093, -0.00213729, -0.0247357, -0.00292871, 0, 0.002, -0.003)
+
+[node name="BoneAttachment3D2" type="BoneAttachment3D" parent="Player/VisualNode/RootNode/LittleAdventurerAndie_GameRig/Skeleton3D"]
+transform = Transform3D(-0.959447, 0.230433, 0.162353, 0.105078, 0.826818, -0.552562, -0.261566, -0.513094, -0.817504, 0.0107265, 0.00281957, 0.0236628)
+bone_name = "DEF-hand.L"
+bone_idx = 32
+
+[node name="Sword" parent="Player/VisualNode/RootNode/LittleAdventurerAndie_GameRig/Skeleton3D/BoneAttachment3D2" instance=ExtResource("4_s4o6p")]
+transform = Transform3D(-0.00670945, -0.00445898, -0.0236664, 0.0240279, 0.000419408, -0.00689093, 0.0016261, -0.0245956, 0.00417303, 0, 0.002, -0.003)
+
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Player/VisualNode"]
 libraries = {
 "": SubResource("AnimationLibrary_eh70n")
 }
+
+[node name="VFX" type="Node3D" parent="Player/VisualNode"]
+
+[node name="Footstep_GPUParticles3D" parent="Player/VisualNode/VFX" instance=ExtResource("5_78eib")]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Player"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)

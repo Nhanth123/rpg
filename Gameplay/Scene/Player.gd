@@ -4,6 +4,7 @@ const SPEED = 5.0
 
 @onready var visual : Node3D = $VisualNode
 @onready var animationPlayer = $VisualNode/AnimationPlayer
+@onready var footstepVFX = $VisualNode/VFX/Footstep_GPUParticles3D
 
 
 func _physics_process(delta):
@@ -16,10 +17,12 @@ func _physics_process(delta):
 		velocity.x = direction.x * SPEED
 		velocity.z = direction.z * SPEED
 		animationPlayer.play("LittleAdventurerAndie_Run")
+		footstepVFX.emitting = true
 	else:
 		velocity.x = move_toward(velocity.x, 0 , SPEED)
 		velocity.z = move_toward(velocity.z, 0 , SPEED)
 		animationPlayer.play("LittleAdventurerAndie_Idel")
+		footstepVFX.emitting = false
 		
 	if velocity.length() > 0.2:
 		var lookDir = Vector2(velocity.z, velocity.x)
