@@ -4805,7 +4805,7 @@ _data = {
 [node name="Node3D" parent="." instance=ExtResource("1_04uql")]
 
 [node name="Player" type="CharacterBody3D" parent="." groups=["Player"]]
-visible = false
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 1, -6)
 script = ExtResource("2_7ms18")
 
 [node name="VisualNode" type="Node3D" parent="Player"]

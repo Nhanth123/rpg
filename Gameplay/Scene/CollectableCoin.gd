@@ -1,13 +1,18 @@
 extends Node3D
-@onready var visual :Node3D = $VisualNode
 
+@onready var visual :Node3D = $VisualNode
+@onready var pickUpVFX: GPUParticles3D = $VFXNode
 
 var rotateSpeed = 1
 
 func _process(delta):
 	visual.rotate_y(rotateSpeed * delta)
+	
+	if visual.visible == false && pickUpVFX.emitting == false:
+		queue_free()
 
 
 func _on_area_3d_body_entered(body):
 	if body.is_in_group("Player"):
-		queue_free()
+		pickUpVFX.emitting = true
+		visual.visible = false
