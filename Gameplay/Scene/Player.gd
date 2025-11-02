@@ -6,6 +6,7 @@ const SPEED = 5.0
 @onready var animationPlayer = $VisualNode/AnimationPlayer
 @onready var footstepVFX = $VisualNode/VFX/Footstep_GPUParticles3D
 
+var coinNumber: int
 
 func _physics_process(delta):
 	if not is_on_floor():
@@ -29,3 +30,7 @@ func _physics_process(delta):
 		visual.rotation.y = lookDir.angle()
 	
 	move_and_slide()
+	
+func AddCoin(value: int):
+	coinNumber += value
+	print(coinNumber)
