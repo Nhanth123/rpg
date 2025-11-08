@@ -6,6 +6,8 @@ const SPEED = 5.0
 @onready var animationPlayer = $VisualNode/AnimationPlayer
 @onready var footstepVFX = $VisualNode/VFX/Footstep_GPUParticles3D
 
+
+
 var coinNumber: int
 
 func _physics_process(delta):

@@ -1,13 +1,11 @@
-[gd_scene load_steps=25 format=3 uid="uid://bv188u353pcw2"]
+[gd_scene load_steps=22 format=3 uid="uid://bv188u353pcw2"]
 
 [ext_resource type="PackedScene" uid="uid://xm3a5j45elv3" path="res://Asset/Scene/GameLevelScene.tscn" id="1_04uql"]
 [ext_resource type="Material" uid="uid://dsxg0h0pajegl" path="res://Asset/Characters/MainCharacter/LittleAdventurerAndie_Material.tres" id="2_2yvkv"]
 [ext_resource type="Script" path="res://Gameplay/Scene/Player.gd" id="2_7ms18"]
 [ext_resource type="PackedScene" uid="uid://xgpsrjv1wwgj" path="res://Asset/Characters/Sword/sword.tscn" id="4_s4o6p"]
 [ext_resource type="PackedScene" uid="uid://d3dw4mj627ytu" path="res://Asset/VFX/Scene/footstep_particle.tscn" id="5_78eib"]
-[ext_resource type="PackedScene" uid="uid://2ijeduybl61n" path="res://Asset/Environment/Scene/coin.tscn" id="6_r3kr5"]
-[ext_resource type="Script" path="res://Gameplay/Scene/CollectableCoin.gd" id="6_scpor"]
-[ext_resource type="PackedScene" uid="uid://d26l7qkbcg5jp" path="res://Asset/VFX/Scene/coinPickup_particle.tscn" id="7_hkqev"]
+[ext_resource type="PackedScene" uid="uid://1sqhp42tbxh5" path="res://Gameplay/Scene/collectable_coin.tscn" id="6_vwais"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ksbdj"]
 resource_name = "Material.001"
@@ -4798,8 +4796,6 @@ _data = {
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_sg72u"]
 
-[sub_resource type="SphereShape3D" id="SphereShape3D_clo41"]
-
 [node name="Node3D" type="Node3D"]
 
 [node name="Node3D" parent="." instance=ExtResource("1_04uql")]
@@ -5566,16 +5562,17 @@ light_energy = 0.5
 light_specular = 0.2
 omni_range = 3.0
 
-[node name="CollectableCoin" type="Node3D" parent="."]
-script = ExtResource("6_scpor")
+[node name="CollectableCoin" parent="." instance=ExtResource("6_vwais")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.499999, 0)
 
-[node name="VisualNode" parent="CollectableCoin" instance=ExtResource("6_r3kr5")]
+[node name="CollectableCoin2" parent="." instance=ExtResource("6_vwais")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.49793, -0.038972, -0.86601)
 
-[node name="VFXNode" parent="CollectableCoin" instance=ExtResource("7_hkqev")]
+[node name="CollectableCoin3" parent="." instance=ExtResource("6_vwais")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.43209, -0.0546614, -2.13241)
 
-[node name="Area3D" type="Area3D" parent="CollectableCoin"]
+[node name="CollectableCoin4" parent="." instance=ExtResource("6_vwais")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.09147, -0.112364, -6.17016)
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="CollectableCoin/Area3D"]
-shape = SubResource("SphereShape3D_clo41")
-
-[connection signal="body_entered" from="CollectableCoin/Area3D" to="CollectableCoin" method="_on_area_3d_body_entered"]
+[node name="CollectableCoin5" parent="." instance=ExtResource("6_vwais")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.194, 0.328636, -2.57177)
