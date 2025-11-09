@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://bv188u353pcw2"]
+[gd_scene load_steps=24 format=3 uid="uid://bv188u353pcw2"]
 
 [ext_resource type="PackedScene" uid="uid://xm3a5j45elv3" path="res://Asset/Scene/GameLevelScene.tscn" id="1_04uql"]
 [ext_resource type="Material" uid="uid://dsxg0h0pajegl" path="res://Asset/Characters/MainCharacter/LittleAdventurerAndie_Material.tres" id="2_2yvkv"]
@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://xgpsrjv1wwgj" path="res://Asset/Characters/Sword/sword.tscn" id="4_s4o6p"]
 [ext_resource type="PackedScene" uid="uid://d3dw4mj627ytu" path="res://Asset/VFX/Scene/footstep_particle.tscn" id="5_78eib"]
 [ext_resource type="PackedScene" uid="uid://1sqhp42tbxh5" path="res://Gameplay/Scene/collectable_coin.tscn" id="6_vwais"]
+[ext_resource type="Texture2D" uid="uid://byo4gdwy76yce" path="res://Asset/UI/Coin.png" id="7_6rxvj"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ksbdj"]
 resource_name = "Material.001"
@@ -4796,6 +4797,10 @@ _data = {
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_sg72u"]
 
+[sub_resource type="LabelSettings" id="LabelSettings_yj4j2"]
+font_size = 50
+font_color = Color(0.965842, 0.438763, 0.302317, 0.866667)
+
 [node name="Node3D" type="Node3D"]
 
 [node name="Node3D" parent="." instance=ExtResource("1_04uql")]
@@ -5576,3 +5581,35 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.09147, -0.112364, -6.17016
 
 [node name="CollectableCoin5" parent="." instance=ExtResource("6_vwais")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.194, 0.328636, -2.57177)
+
+[node name="UI" type="Node3D" parent="."]
+
+[node name="Control_GameplayUI" type="Control" parent="UI"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="UI/Control_GameplayUI"]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = 890.0
+offset_top = 20.0
+offset_right = 1003.0
+offset_bottom = 89.0
+grow_horizontal = 0
+theme_override_constants/separation = 15
+alignment = 2
+
+[node name="Label" type="Label" parent="UI/Control_GameplayUI/HBoxContainer"]
+layout_mode = 2
+text = "0"
+label_settings = SubResource("LabelSettings_yj4j2")
+
+[node name="TextureRect" type="TextureRect" parent="UI/Control_GameplayUI/HBoxContainer"]
+modulate = Color(0.888395, 0.317229, 0.633557, 1)
+layout_mode = 2
+texture = ExtResource("7_6rxvj")
+expand_mode = 2
