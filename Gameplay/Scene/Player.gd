@@ -8,9 +8,14 @@ const SPEED = 5.0
 
 
 
-var coinNumber: int
+var coinNumber: int:
+	set(newValue):
+		coinNumber = newValue
+		emit_signal("coinNumberUpdate", coinNumber)
 
-func _physics_process(delta):
+signal coinNumberUpdate(newValue)
+
+func _physics_process(_delta):
 	if not is_on_floor():
 		velocity.y -= 1
 
