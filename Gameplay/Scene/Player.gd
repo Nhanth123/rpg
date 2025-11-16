@@ -6,7 +6,8 @@ const SPEED = 5.0
 @onready var animationPlayer = $VisualNode/AnimationPlayer
 @onready var footstepVFX = $VisualNode/VFX/Footstep_GPUParticles3D
 
-
+var direction : Vector3
+var slideKey_pressed : bool
 
 var coinNumber: int:
 	set(newValue):
@@ -21,6 +22,9 @@ func _physics_process(_delta):
 
 	var input_dir = Input.get_vector("Left", "Right", "Up", "Down")
 	var direction = (transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
+	
+	slideKey_pressed = Input.is_action_just_pressed("Dash")
+	
 	if direction:
 		velocity.x = direction.x * SPEED
 		velocity.z = direction.z * SPEED

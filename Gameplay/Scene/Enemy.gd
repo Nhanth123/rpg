@@ -1,6 +1,6 @@
 extends CharacterBody3D
 
-const SPEED = 1
+const SPEED = 0.8
 
 @onready var navigation_agent_3d = $NavigationAgent3D
 @onready var player : Node3D
