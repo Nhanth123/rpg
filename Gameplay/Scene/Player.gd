@@ -21,9 +21,10 @@ func _physics_process(_delta):
 		velocity.y -= 1
 
 	var input_dir = Input.get_vector("Left", "Right", "Up", "Down")
-	var direction = (transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
+	direction = (transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
 	
-	slideKey_pressed = Input.is_action_just_pressed("Dash")
+	slideKey_pressed = Input.is_action_just_pressed("Slide")
+	
 	
 	if direction:
 		velocity.x = direction.x * SPEED

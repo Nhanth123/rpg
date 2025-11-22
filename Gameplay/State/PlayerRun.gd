@@ -13,8 +13,11 @@ func state_update(_detal: float):
 	if character.velocity.length() > 0.2:
 		var lookDir = Vector2(character.velocity.z, character.velocity.x)
 		character.visual.rotation.y = lookDir.angle()
+	
 	if character.slideKey_pressed:
+		print("CLICK ROLL")
 		state_machine.switchTo("Slide")
+	
 	if character.direction == Vector3.ZERO:
 		state_machine.switchTo("Idle")
 

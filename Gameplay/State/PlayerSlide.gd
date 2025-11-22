@@ -1,5 +1,6 @@
 extends StateBase
 
+
 var slideSpeed : float = 650
 var slideDuration: float = 0.3
 var remainSlideDuration: float

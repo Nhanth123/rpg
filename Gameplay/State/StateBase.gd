@@ -10,7 +10,6 @@ var animationPlayer: AnimationPlayer
 func enter():
 	print("Enter state: ", name)
 	animationPlayer.play(animationName)
-	pass
 
 func exit():
 	print("Exiting state: ", name)
