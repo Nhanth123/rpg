@@ -25,7 +25,7 @@ func _physics_process(_delta):
 	direction = (transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
 	
 	slideKey_pressed = Input.is_action_just_pressed("Slide")
-	attackKey_pressed = Input.is_action_just_pressed("Attack")
+	#attackKey_pressed = Input.is_action_just_pressed("Attack")
 	
 	if direction:
 		velocity.x = direction.x * SPEED

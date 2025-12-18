@@ -13,8 +13,8 @@ func _ready():
 	
 	currentState.enter()
 	
-func _process(delta):
-	currentState.state_update(delta)
+func _process(_delta):
+	currentState.state_update(_delta)
 	
 func switchTo(targetState: String):
 	if !has_node(targetState):
