@@ -1,14 +1,18 @@
 extends StateBase
 
-@export var hiBoxCollisionShap: CollisionShape3D
+@export var hitBoxCollisionShape: CollisionShape3D
 @export var bladeMaterialEffectAnimationPlayer: AnimationPlayer
 @export var VFX_Blade : Node3D
 
+var damage: int = 40
+
 func enableHitBox():
-	hiBoxCollisionShap.disabled = false
+	hitBoxCollisionShape.disabled = false
+	print("hit box disable = ", hitBoxCollisionShape.disabled)
 
 func disableHitBox():
-	hiBoxCollisionShap.disabled = true
+	hitBoxCollisionShape.disabled = true
+	print("hit box disable = ", hitBoxCollisionShape.disabled)
 
 func enter():
 	super.enter()
@@ -18,7 +22,6 @@ func enter():
 	VFX_Blade.visible = true
 	bladeMaterialEffectAnimationPlayer.stop()
 	bladeMaterialEffectAnimationPlayer.play("PlayBladeVFX")
-	
 
 func exit():
 	super.enter()
@@ -30,4 +33,7 @@ func state_update(_delta:float):
 		state_machine.switchTo("Idle")
 		
 	
-	
+
+func _on_hit_box_body_entered(body):
+	if body.is_in_group("Enemy"):
+		body.applyDamge(damage)

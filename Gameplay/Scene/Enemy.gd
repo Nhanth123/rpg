@@ -10,8 +10,13 @@ const SPEED = 0.8
 var direction: Vector3
 var stopDistance : float = 2.2
 
+var maxHeath: int = 100
+var currentHealth: int
+
+
 func _ready():
 	player = get_tree().get_first_node_in_group("Player")
+	currentHealth = maxHeath
 
 func _physics_process(delta):
 	navigation_agent_3d.target_position = player.global_position
@@ -30,3 +35,9 @@ func _physics_process(delta):
 		var lookDir = Vector2(velocity.z, velocity.x)
 		visual.rotation.y = lookDir.angle()
 	move_and_slide()
+	
+func applyDamge(damage: int):
+	currentHealth -=  damage
+	currentHealth = clamp(currentHealth, 0 , maxHeath)
+	print(name, ' health: ', currentHealth)
+	
