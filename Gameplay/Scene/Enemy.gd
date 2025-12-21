@@ -6,6 +6,7 @@ const SPEED = 0.8
 @onready var player : Node3D
 @onready var visual: Node3D = $VisualNode
 @onready var animationPlayer : AnimationPlayer = $VisualNode/AnimationPlayer
+@onready var materialEffectAnimationPlayer: AnimationPlayer = $VisualNode/MaterialEffectAnimationPlayer 
 
 var direction: Vector3
 var stopDistance : float = 2.2
@@ -40,4 +41,4 @@ func applyDamge(damage: int):
 	currentHealth -=  damage
 	currentHealth = clamp(currentHealth, 0 , maxHeath)
 	print(name, ' health: ', currentHealth)
-	
+	materialEffectAnimationPlayer.play("Flash")
