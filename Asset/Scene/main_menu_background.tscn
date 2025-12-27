@@ -4690,7 +4690,7 @@ mesh = SubResource("ArrayMesh_geeot")
 skeleton = NodePath("")
 
 [node name="BoneAttachment3D2" type="BoneAttachment3D" parent="MainMenuCharacter_01/RootNode/Game Rig Player/Skeleton3D"]
-transform = Transform3D(0.258951, 0.845129, -0.467655, 0.933683, -0.343006, -0.102867, -0.247344, -0.410005, -0.877904, 0.0170602, -0.00302085, 0.0150713)
+transform = Transform3D(0.258951, 0.845129, -0.467655, 0.933683, -0.343006, -0.102865, -0.247343, -0.410005, -0.877904, 0.0170602, -0.00302084, 0.0150713)
 bone_name = "DEF-hand.L"
 bone_idx = 32
 
