@@ -3,6 +3,7 @@ extends StateBase
 @export var hitBoxCollisionShape: CollisionShape3D
 @export var bladeMaterialEffectAnimationPlayer: AnimationPlayer
 @export var VFX_Blade : Node3D
+@export var VFX_Hit: GPUParticles3D
 
 var damage: int = 40
 
@@ -32,8 +33,12 @@ func state_update(_delta:float):
 	if animationPlayer.is_playing() == false:
 		state_machine.switchTo("Idle")
 		
-	
 
 func _on_hit_box_body_entered(body):
 	if body.is_in_group("Enemy"):
 		body.applyDamge(damage)
+
+		var position =  body.global_position
+		position.y = 1.5
+		VFX_Hit.global_position = position
+		VFX_Hit.restart()

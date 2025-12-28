@@ -14,6 +14,7 @@ func enter():
 	remainSlideDuration = slideDuration
 
 func state_update(_delta: float):
+	print('Current animation: ', animationPlayer.current_animation)
 	remainSlideDuration -= _delta
 	facingDir = character.visual.transform.basis.z
 	
