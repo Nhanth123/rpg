@@ -3,11 +3,10 @@ extends CharacterBody3D
 const SPEED = 0.8
 
 @onready var navigation_agent_3d = $NavigationAgent3D
-@onready var player : Node3D
+var player : Node3D
 @onready var visual: Node3D = $VisualNode
 @onready var animationPlayer : AnimationPlayer = $VisualNode/AnimationPlayer
 @onready var materialEffectAP: AnimationPlayer = $VisualNode/MaterialEffectAnimationPlayer 
-
 
 var direction: Vector3
 var stopDistance : float = 2.2

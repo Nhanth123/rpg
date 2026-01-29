@@ -1,6 +1,5 @@
 class_name StateBase
-
-extends Node
+extends Node3D
 
 var state_machine: StateMachine
 var character: CharacterBody3D
@@ -9,7 +8,7 @@ var animationPlayer: AnimationPlayer
 @export var animationName: String = ''
 
 func enter():
-	print("Entering state: ", name)
+	#print("Entering state: ", name)
 	animationPlayer.play(animationName)
 	print(character.name, " is playing ", animationPlayer.current_animation)
 

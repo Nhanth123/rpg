@@ -2,6 +2,10 @@ extends StateBase
 
 @export var footStepVFX: GPUParticles3D
 
+func enter():
+	super.enter()
+	footStepVFX.emitting = true
+
 func state_update(_detal: float):
 	if character.direction:
 		character.velocity.x = character.direction.x * character.SPEED
@@ -16,18 +20,14 @@ func state_update(_detal: float):
 	
 	if character.attackKey_pressed:
 		state_machine.switchTo("Attack")
-	
+		
 	if character.slideKey_pressed:
 		state_machine.switchTo("Slide")
 	
 	if character.direction == Vector3.ZERO:
 		state_machine.switchTo("Idle")
 
-func enter():
-	super.enter()
-	footStepVFX.emitting = true
 
 func exit():
 	super.exit()
 	footStepVFX.emitting = false
-	

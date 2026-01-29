@@ -2,25 +2,25 @@ class_name StateMachine
 extends Node
 
 @export var initial_state = NodePath()
-@onready var currentState: StateBase = get_node(initial_state)
+@onready var current_state:StateBase = get_node(initial_state)
 
-func _ready():
+func _ready() -> void:
 	for child in get_children():
 		child.state_machine = self
 		child.character = get_parent()
 		child.animationPlayer = get_parent().get_node("VisualNode/AnimationPlayer")
 		child.showInfo()
 	
-	currentState.enter()
+	current_state.enter()
 	
-func _process(_delta):
-	currentState.state_update(_delta)
+func _physics_process(delta: float) -> void:
+	current_state.state_update(delta)
 	
 func switchTo(targetState: String):
-	if !has_node(targetState):
+	if not has_node(targetState):
 		print("Could not find the target state node")
 		return
 
-	currentState.exit()
-	currentState = get_node(targetState)
-	currentState.enter()
+	current_state.exit()
+	current_state = get_node(targetState)
+	current_state.enter()
