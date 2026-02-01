@@ -1,7 +1,7 @@
 extends StateBase
 
-var slideSpeed : float = 630
-var slideDuration : float = 0.6
+var slideSpeed : float = 600
+var slideDuration : float = 0.4
 var remainInSlideDuration : float
 var facingDir : Vector3
 

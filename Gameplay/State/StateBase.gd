@@ -12,9 +12,6 @@ func enter():
 	animationPlayer.play(animationName)
 	print(character.name, " is playing ", animationPlayer.current_animation)
 
-	#print(animationPlayer.name)
-	#print(animationPlayer.get_parent())
-	#print(animationPlayer.get_animation_list())
 	pass
 
 func exit():
