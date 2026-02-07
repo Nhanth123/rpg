@@ -12,9 +12,9 @@ func enableHitBox():
 	print("hit box disable = ", hitBoxCollisionShape.disabled)
 
 func disableHitBox():
-	#hitBoxCollisionShape.disabled = true
-	#print("hit box disable = ", hitBoxCollisionShape.disabled)
-	pass
+	hitBoxCollisionShape.disabled = true
+	print("hit box disable = ", hitBoxCollisionShape.disabled)
+
 
 func enter():
 	super.enter()
