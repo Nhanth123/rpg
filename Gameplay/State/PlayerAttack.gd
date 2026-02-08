@@ -9,11 +9,11 @@ var damage: int = 40
 
 func enableHitBox():
 	hitBoxCollisionShape.disabled = false
-	print("hit box disable = ", hitBoxCollisionShape.disabled)
+	#print("hit box disable = ", hitBoxCollisionShape.disabled)
 
 func disableHitBox():
 	hitBoxCollisionShape.disabled = true
-	print("hit box disable = ", hitBoxCollisionShape.disabled)
+	#print("hit box disable = ", hitBoxCollisionShape.disabled)
 
 
 func enter():
@@ -33,13 +33,8 @@ func exit():
 func state_update(_delta:float):
 	if animationPlayer.is_playing() == false:
 		state_machine.switchTo("Idle")
-		
+
 
 func _on_hit_box_body_entered(body):
 	if body.is_in_group("Enemy"):
 		body.applyDamge(damage)
-
-		var position =  body.global_position
-		position.y = 1.5
-		VFX_Hit.global_position = position
-		VFX_Hit.restart()

@@ -4679,7 +4679,7 @@ mesh = SubResource("ArrayMesh_35asb")
 skin = SubResource("Skin_pykng")
 
 [node name="BoneAttachment3D" type="BoneAttachment3D" parent="MainMenuCharacter_01/RootNode/Game Rig Player/Skeleton3D"]
-transform = Transform3D(-0.773299, -0.628663, -0.0823786, 0.394489, -0.375341, -0.838746, 0.49637, -0.6811, 0.538253, -0.0122183, 0.00715849, 0.0149556)
+transform = Transform3D(-0.773299, -0.628664, -0.0823787, 0.394489, -0.375341, -0.838746, 0.49637, -0.6811, 0.538253, -0.0122182, 0.00715849, 0.0149556)
 bone_name = "DEF-hand.R"
 bone_idx = 67
 
@@ -4690,7 +4690,7 @@ mesh = SubResource("ArrayMesh_geeot")
 skeleton = NodePath("")
 
 [node name="BoneAttachment3D2" type="BoneAttachment3D" parent="MainMenuCharacter_01/RootNode/Game Rig Player/Skeleton3D"]
-transform = Transform3D(0.260025, 0.84493, -0.467419, 0.933563, -0.343638, -0.101835, -0.246667, -0.409886, -0.87815, 0.0169776, -0.00292347, 0.0148899)
+transform = Transform3D(0.260024, 0.84493, -0.467419, 0.933564, -0.343637, -0.101835, -0.246666, -0.409887, -0.87815, 0.0169776, -0.00292346, 0.0148899)
 bone_name = "DEF-hand.L"
 bone_idx = 32
 

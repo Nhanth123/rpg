@@ -10,12 +10,12 @@ var animationPlayer: AnimationPlayer
 func enter():
 	#print("Entering state: ", name)
 	animationPlayer.play(animationName)
-	print(character.name, " is playing ", animationPlayer.current_animation)
+	#print(character.name, " is playing ", animationPlayer.current_animation)
 
 	pass
 
 func exit():
-	print("Exiting state: ", name)
+	#print("Exiting state: ", name)
 	pass
 	
 func state_update(_delta: float):

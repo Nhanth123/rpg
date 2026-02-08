@@ -8116,7 +8116,7 @@ bone_idx = 67
 transform = Transform3D(-0.00667074, 0.00340051, -0.0238524, 0.0239986, -0.00125771, -0.00689093, -0.00213729, -0.0247357, -0.00292871, 0, 0.002, -0.003)
 
 [node name="BoneAttachment3D2" type="BoneAttachment3D" parent="Player/VisualNode/RootNode/LittleAdventurerAndie_GameRig/Skeleton3D"]
-transform = Transform3D(-0.952557, 0.116259, -0.281273, 0.281761, 0.686265, -0.670556, 0.11507, -0.717996, -0.686466, 0.00912471, -0.00281834, 0.0211516)
+transform = Transform3D(-0.952557, 0.116258, -0.281273, 0.281761, 0.686266, -0.670556, 0.115071, -0.717995, -0.686467, 0.00912471, -0.00281833, 0.0211516)
 bone_name = "DEF-hand.L"
 bone_idx = 32
 
@@ -8616,3 +8616,5 @@ avoidance_enabled = true
 navigation_mesh = SubResource("NavigationMesh_rplgd")
 
 [node name="Level" parent="NavigationRegion3D" instance=ExtResource("1_04uql")]
+
+[connection signal="body_entered" from="Player/VisualNode/HitBox" to="Player/StateMachine/Attack" method="_on_hit_box_body_entered"]
