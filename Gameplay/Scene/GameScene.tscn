@@ -7386,11 +7386,12 @@ animationName = "LittleAdventurerAndie_Run"
 script = ExtResource("10_07ey8")
 animationName = "LittleAdventurerAndie_Roll"
 
-[node name="Attack" type="Node3D" parent="Player/StateMachine" node_paths=PackedStringArray("hitBoxCollisionShape", "bladeMaterialEffectAnimationPlayer", "VFX_Blade")]
+[node name="Attack" type="Node3D" parent="Player/StateMachine" node_paths=PackedStringArray("hitBoxCollisionShape", "bladeMaterialEffectAnimationPlayer", "VFX_Blade", "VFX_Hit")]
 script = ExtResource("8_vvdjt")
 hitBoxCollisionShape = NodePath("../../VisualNode/HitBox/CollisionShape3D")
 bladeMaterialEffectAnimationPlayer = NodePath("../../VisualNode/VFX/BladeMaterialEffectAnimationPlayer")
 VFX_Blade = NodePath("../../VisualNode/VFX/Sword_VFX_Models/RootNode/Blade VFX 01")
+VFX_Hit = NodePath("../../VisualNode/VFX/hit_particle")
 animationName = "LittleAdventurerAndie_ATTACK_01"
 
 [node name="VisualNode" type="Node3D" parent="Player"]
@@ -8116,7 +8117,7 @@ bone_idx = 67
 transform = Transform3D(-0.00667074, 0.00340051, -0.0238524, 0.0239986, -0.00125771, -0.00689093, -0.00213729, -0.0247357, -0.00292871, 0, 0.002, -0.003)
 
 [node name="BoneAttachment3D2" type="BoneAttachment3D" parent="Player/VisualNode/RootNode/LittleAdventurerAndie_GameRig/Skeleton3D"]
-transform = Transform3D(-0.952557, 0.116258, -0.281273, 0.281761, 0.686266, -0.670556, 0.115071, -0.717995, -0.686467, 0.00912471, -0.00281833, 0.0211516)
+transform = Transform3D(-0.952558, 0.116258, -0.281273, 0.281761, 0.686266, -0.670556, 0.115071, -0.717995, -0.686467, 0.00912471, -0.00281833, 0.0211516)
 bone_name = "DEF-hand.L"
 bone_idx = 32
 

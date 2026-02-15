@@ -6,7 +6,7 @@ const SPEED = 0.8
 var player : Node3D
 @onready var visual: Node3D = $VisualNode
 @onready var animationPlayer : AnimationPlayer = $VisualNode/AnimationPlayer
-#@onready var materialEffectAP: AnimationPlayer = $VisualNode/MaterialEffectAnimationPlayer 
+@onready var materialEffectAP: AnimationPlayer = $VisualNode/MaterialEffectAnimationPlayer 
 
 var direction: Vector3
 var stopDistance : float = 3
@@ -18,6 +18,7 @@ var currentHealth: int
 func _ready():
 	player = get_tree().get_first_node_in_group("Player")
 	currentHealth = maxHeath
+	print('current health:', currentHealth)
 
 func _physics_process(delta):
 	navigation_agent_3d.target_position = player.global_position
@@ -42,4 +43,4 @@ func applyDamge(damage: int):
 	currentHealth -=  damage
 	currentHealth = clamp(currentHealth, 0 , maxHeath)
 	print(name, " 's health: ", currentHealth)
-	#materialEffectAP.play("Flash")
+	materialEffectAP.play("Flash")

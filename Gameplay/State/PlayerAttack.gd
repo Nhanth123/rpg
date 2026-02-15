@@ -5,7 +5,7 @@ extends StateBase
 @export var VFX_Blade : Node3D
 @export var VFX_Hit: GPUParticles3D
 
-var damage: int = 40
+var damage: int = 10
 
 func enableHitBox():
 	hitBoxCollisionShape.disabled = false
@@ -36,5 +36,13 @@ func state_update(_delta:float):
 
 
 func _on_hit_box_body_entered(body):
+	var test_a = body.is_in_group("Enemy")
+	print('is in group enyemy:', test_a)
 	if body.is_in_group("Enemy"):
+		print('damage: ', damage)
 		body.applyDamge(damage)
+		
+		var position_enemy = body.global_position
+		position_enemy.y = 1.5
+		VFX_Hit.global_position = position_enemy.y
+		VFX_Hit.restart()
