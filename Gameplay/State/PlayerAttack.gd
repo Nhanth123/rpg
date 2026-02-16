@@ -6,6 +6,9 @@ extends StateBase
 @export var VFX_Hit: GPUParticles3D
 
 var damage: int = 10
+var slideSpeed: float = 500
+var remainSlideDuration: float
+var facingDir: Vector3
 
 func enableHitBox():
 	hitBoxCollisionShape.disabled = false
@@ -24,6 +27,8 @@ func enter():
 	VFX_Blade.visible = true
 	bladeMaterialEffectAnimationPlayer.stop()
 	bladeMaterialEffectAnimationPlayer.play("PlayBladeVFX")
+	
+	remainSlideDuration = animationPlayer.current_animation_length * 0.3
 
 func exit():
 	super.enter()
@@ -31,6 +36,16 @@ func exit():
 	VFX_Blade.visible = false
 	
 func state_update(_delta:float):
+	remainSlideDuration -= _delta
+	facingDir = character.visual.transform.basis.z
+	if remainSlideDuration > 0:
+		character.velocity.x = facingDir.x * slideSpeed * _delta
+		character.velocity.z = facingDir.z * slideSpeed * _delta
+	else:
+		character.velocity.x = move_toward(character.velocity.x, 0, character.SPEED)
+		character.velocity.z = move_toward(character.velocity.z, 0, character.SPEED)
+	
+	
 	if animationPlayer.is_playing() == false:
 		state_machine.switchTo("Idle")
 
@@ -42,7 +57,8 @@ func _on_hit_box_body_entered(body):
 		print('damage: ', damage)
 		body.applyDamge(damage)
 		
-		var position_enemy = body.global_position
-		position_enemy.y = 1.5
-		VFX_Hit.global_position = position_enemy.y
+		var position_body = body.global_position
+		position_body.y = 1.5
+		VFX_Hit.global_position = position_body.y
 		VFX_Hit.restart()
+		remainSlideDuration = 0
