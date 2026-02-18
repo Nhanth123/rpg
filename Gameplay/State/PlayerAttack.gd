@@ -4,6 +4,9 @@ extends StateBase
 @export var bladeMaterialEffectAnimationPlayer: AnimationPlayer
 @export var VFX_Blade : Node3D
 @export var VFX_Hit: GPUParticles3D
+@export var nextAttackState : String
+var can_attack_again : bool
+
 
 var damage: int = 10
 var slideSpeed: float = 500
@@ -21,6 +24,8 @@ func disableHitBox():
 
 func enter():
 	super.enter()
+	
+	can_attack_again = false
 	
 	character.velocity.x = 0
 	character.velocity.z = 0
@@ -48,6 +53,8 @@ func state_update(_delta:float):
 	
 	if animationPlayer.is_playing() == false:
 		state_machine.switchTo("Idle")
+	if nextAttackState != '' && can_attack_again && character.attackKey_pressed:
+		state_machine.switchTo(nextAttackState)
 
 
 func _on_hit_box_body_entered(body):
@@ -62,3 +69,6 @@ func _on_hit_box_body_entered(body):
 		VFX_Hit.global_position = position_body.y
 		VFX_Hit.restart()
 		remainSlideDuration = 0
+
+func set_CanAttackAgain():
+	can_attack_again = true
