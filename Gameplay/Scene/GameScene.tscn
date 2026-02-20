@@ -1,4 +1,4 @@
-[gd_scene load_steps=62 format=3 uid="uid://bv188u353pcw2"]
+[gd_scene load_steps=67 format=3 uid="uid://bv188u353pcw2"]
 
 [ext_resource type="PackedScene" uid="uid://xm3a5j45elv3" path="res://Asset/Scene/GameLevelScene.tscn" id="1_04uql"]
 [ext_resource type="Material" uid="uid://dsxg0h0pajegl" path="res://Asset/Characters/MainCharacter/LittleAdventurerAndie_Material.tres" id="2_2yvkv"]
@@ -17,6 +17,10 @@
 [ext_resource type="Material" uid="uid://6y8a7flk0cxy" path="res://Asset/Characters/NPC/npc_material.tres" id="9_0o4oc"]
 [ext_resource type="Script" path="res://Gameplay/State/PlayerSlide.gd" id="10_07ey8"]
 [ext_resource type="PackedScene" uid="uid://k5prn3b4lgvq" path="res://Asset/VFX/Scene/hit_particle.tscn" id="11_ovdru"]
+[ext_resource type="Script" path="res://Gameplay/EnemyAI/EnemySpawn.gd" id="16_m12rb"]
+[ext_resource type="Script" path="res://Gameplay/EnemyAI/EnemyChasePlayer.gd" id="17_y4tfw"]
+[ext_resource type="Script" path="res://Gameplay/EnemyAI/EnemyAttack.gd" id="18_hfoj5"]
+[ext_resource type="Script" path="res://Gameplay/EnemyAI/EnemyDead.gd" id="19_n4guo"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ksbdj"]
 resource_name = "Material.001"
@@ -7385,11 +7389,40 @@ tracks/0/keys = {
 "update": 0,
 "values": [0.0]
 }
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:material_override:shader_parameter/Step")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [1.0]
+}
+
+[sub_resource type="Animation" id="Animation_n6fs7"]
+resource_name = "Spawn"
+length = 2.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:material_override:shader_parameter/Step")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [2.08165e-12, 1.0]
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_a7tin"]
 _data = {
 "Flash": SubResource("Animation_4emwd"),
-"RESET": SubResource("Animation_i6dev")
+"RESET": SubResource("Animation_i6dev"),
+"Spawn": SubResource("Animation_n6fs7")
 }
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_qqy1d"]
@@ -8167,7 +8200,7 @@ mesh = SubResource("ArrayMesh_522yp")
 skin = SubResource("Skin_8vbkq")
 
 [node name="BoneAttachment3D" type="BoneAttachment3D" parent="Player/VisualNode/RootNode/LittleAdventurerAndie_GameRig/Skeleton3D"]
-transform = Transform3D(0.123806, 0.587961, 0.799354, -0.171252, 0.806125, -0.566417, -0.977413, -0.0667645, 0.200493, 0.000319455, -0.0128435, 0.0187678)
+transform = Transform3D(0.123806, 0.587961, 0.799354, -0.171252, 0.806125, -0.566417, -0.977412, -0.0667648, 0.200493, 0.000319459, -0.0128435, 0.0187678)
 bone_name = "DEF-hand.R"
 bone_idx = 67
 
@@ -8175,7 +8208,7 @@ bone_idx = 67
 transform = Transform3D(-0.00667074, 0.00340051, -0.0238524, 0.0239986, -0.00125771, -0.00689093, -0.00213729, -0.0247357, -0.00292871, 0, 0.002, -0.003)
 
 [node name="BoneAttachment3D2" type="BoneAttachment3D" parent="Player/VisualNode/RootNode/LittleAdventurerAndie_GameRig/Skeleton3D"]
-transform = Transform3D(0.168285, -0.54865, -0.818938, -0.00349833, 0.830449, -0.557081, 0.985729, 0.0966137, 0.137832, -0.00165511, -0.0126306, 0.0213758)
+transform = Transform3D(0.168285, -0.548649, -0.818938, -0.00349863, 0.830449, -0.557081, 0.985729, 0.0966142, 0.137832, -0.00165512, -0.0126306, 0.0213758)
 bone_name = "DEF-hand.L"
 bone_idx = 32
 
@@ -8315,6 +8348,24 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.194, 0.328636, -2.57177)
 
 [node name="Enemy" type="CharacterBody3D" parent="." groups=["Enemy"]]
 script = ExtResource("8_sn34e")
+
+[node name="StateMachine" type="Node3D" parent="Enemy"]
+script = ExtResource("6_sy7jm")
+initial_state = NodePath("Spawn")
+
+[node name="Spawn" type="Node3D" parent="Enemy/StateMachine" node_paths=PackedStringArray("materialEffectAnimationPlayer")]
+script = ExtResource("16_m12rb")
+materialEffectAnimationPlayer = NodePath("../../VisualNode/MaterialEffectAnimationPlayer")
+animationName = "NPC_01_IDEL"
+
+[node name="ChasePlayer" type="Node3D" parent="Enemy/StateMachine"]
+script = ExtResource("17_y4tfw")
+
+[node name="Attack" type="Node3D" parent="Enemy/StateMachine"]
+script = ExtResource("18_hfoj5")
+
+[node name="Dead" type="Node3D" parent="Enemy/StateMachine"]
+script = ExtResource("19_n4guo")
 
 [node name="VisualNode" type="Node3D" parent="Enemy"]
 
