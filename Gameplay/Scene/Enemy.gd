@@ -9,7 +9,6 @@ var player : Node3D
 @onready var materialEffectAP: AnimationPlayer = $VisualNode/MaterialEffectAnimationPlayer 
 
 var direction: Vector3
-var stopDistance : float = 3
 
 var maxHeath: int = 100
 var currentHealth: int
@@ -20,22 +19,7 @@ func _ready():
 	currentHealth = maxHeath
 	print('current health:', currentHealth)
 
-func _physics_process(delta):
-	navigation_agent_3d.target_position = player.global_position
-
-	direction = navigation_agent_3d.get_next_path_position() - global_position
-	direction.normalized()
-	
-	if navigation_agent_3d.distance_to_target() < stopDistance:
-		animationPlayer.play("NPC_01_IDEL")
-		return
-
-	velocity = velocity.lerp(direction * SPEED, delta)
-	animationPlayer.play("NPC_01_WALK")
-	
-	if velocity.length() > 0.2:
-		var lookDir = Vector2(velocity.z, velocity.x)
-		visual.rotation.y = lookDir.angle()
+func _physics_process(_delta):
 	move_and_slide()
 	
 func applyDamge(damage: int):

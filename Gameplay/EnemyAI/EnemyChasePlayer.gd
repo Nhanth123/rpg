@@ -1,11 +1,16 @@
 extends StateBase
 
 
-# Called when the node enters the scene tree for the first time.
-func _ready():
-	pass # Replace with function body.
+var stopDistance : float = 2.2
+	
+func state_update(_delta: float):
+	character.navigation_agent_3d.target_position = character.player.global_position
 
+	character.direction = character.navigation_agent_3d.get_next_path_position() - global_position
+	character.direction.normalized()
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
-	pass
+	character.velocity = character.velocity.lerp(character.direction * character.SPEED, _delta)
+	
+	if character.velocity.length() > 0.2:
+		var lookDir = Vector2(character.velocity.z, character.velocity.x)
+		character.visual.rotation.y = lookDir.angle()

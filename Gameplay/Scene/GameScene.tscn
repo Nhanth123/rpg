@@ -1,4 +1,4 @@
-[gd_scene load_steps=67 format=3 uid="uid://bv188u353pcw2"]
+[gd_scene load_steps=68 format=3 uid="uid://bv188u353pcw2"]
 
 [ext_resource type="PackedScene" uid="uid://xm3a5j45elv3" path="res://Asset/Scene/GameLevelScene.tscn" id="1_04uql"]
 [ext_resource type="Material" uid="uid://dsxg0h0pajegl" path="res://Asset/Characters/MainCharacter/LittleAdventurerAndie_Material.tres" id="2_2yvkv"]
@@ -7425,6 +7425,9 @@ _data = {
 "Spawn": SubResource("Animation_n6fs7")
 }
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_jnsxa"]
+size = Vector3(1.2, 1, 1)
+
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_qqy1d"]
 
 [sub_resource type="NavigationMesh" id="NavigationMesh_rplgd"]
@@ -8360,9 +8363,11 @@ animationName = "NPC_01_IDEL"
 
 [node name="ChasePlayer" type="Node3D" parent="Enemy/StateMachine"]
 script = ExtResource("17_y4tfw")
+animationName = "NPC_01_WALK"
 
-[node name="Attack" type="Node3D" parent="Enemy/StateMachine"]
+[node name="Attack" type="Node3D" parent="Enemy/StateMachine" node_paths=PackedStringArray("hitBoxCollisionShap")]
 script = ExtResource("18_hfoj5")
+hitBoxCollisionShap = NodePath("../../VisualNode/HitBox/CollisionShape3D")
 
 [node name="Dead" type="Node3D" parent="Enemy/StateMachine"]
 script = ExtResource("19_n4guo")
@@ -8713,6 +8718,13 @@ root_node = NodePath("../RootNode/GAME RIG 01/Skeleton3D/NPC 01 Mesh")
 libraries = {
 "": SubResource("AnimationLibrary_a7tin")
 }
+
+[node name="HitBox" type="Area3D" parent="Enemy/VisualNode"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Enemy/VisualNode/HitBox"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.08165e-12, 1, 1.5)
+shape = SubResource("BoxShape3D_jnsxa")
+disabled = true
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Enemy"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)

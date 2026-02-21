@@ -1,11 +1,27 @@
 extends StateBase
 
-
-# Called when the node enters the scene tree for the first time.
-func _ready():
-	pass # Replace with function body.
+@export var hitBoxCollisionShap : CollisionShape3D
 
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
-	pass
+var damage: int = 30
+var lookDir: Vector3
+var lookDir2D: Vector2
+
+func enableHitBox():
+	hitBoxCollisionShap.disabled = false
+	
+func disableHitBox():
+	hitBoxCollisionShap.disabled = true
+	
+func enter():
+	super.enter()
+	
+	character.velocity = Vector3.ZERO
+	lookDir = character.player.global_position - character.global_position
+	character.visual.rotation.y = lookDir2D.angle()
+
+func exit():
+	super.enter()
+	disableHitBox()
+	
+	
