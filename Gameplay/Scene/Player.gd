@@ -33,3 +33,7 @@ func _physics_process(_delta: float) -> void:
 func AddCoin(value: int):
 	coinNumber += value
 	#print(coinNumber)
+	
+func takeDamage(damage: int):
+	print('The player take damage: ', damage)
+	

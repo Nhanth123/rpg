@@ -9,7 +9,7 @@ func _ready() -> void:
 		child.state_machine = self
 		child.character = get_parent()
 		child.animationPlayer = get_parent().get_node("VisualNode/AnimationPlayer")
-		child.showInfo()
+		#child.showInfo()
 	
 	current_state.enter()
 	

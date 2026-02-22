@@ -11,7 +11,6 @@ func enter():
 	#print("Entering state: ", name)
 	animationPlayer.play(animationName)
 	#print(character.name, " is playing ", animationPlayer.current_animation)
-
 	pass
 
 func exit():

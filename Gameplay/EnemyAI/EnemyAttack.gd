@@ -7,6 +7,10 @@ var damage: int = 30
 var lookDir: Vector3
 var lookDir2D: Vector2
 
+func state_update(_delta:float):
+	if animationPlayer.is_playing() == false:
+		state_machine.switchTo('ChasePlayer')
+
 func enableHitBox():
 	hitBoxCollisionShap.disabled = false
 	
@@ -24,4 +28,7 @@ func exit():
 	super.enter()
 	disableHitBox()
 	
-	
+
+func _on_hit_box_body_entered(body):
+	if body.is_in_group('Player'):
+		body.takeDamage(damage)
