@@ -1,7 +1,7 @@
 extends StateBase
 
 @export var hitBoxCollisionShap : CollisionShape3D
-
+@export var vfxAnimationPlayer: AnimationPlayer
 
 var damage: int = 30
 var lookDir: Vector3
@@ -28,7 +28,9 @@ func exit():
 	super.enter()
 	disableHitBox()
 	
-
 func _on_hit_box_body_entered(body):
 	if body.is_in_group('Player'):
 		body.takeDamage(damage)
+		
+func playSmashVFX():
+	vfxAnimationPlayer.play('PlayParticle')

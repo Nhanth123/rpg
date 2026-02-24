@@ -50,23 +50,19 @@ func state_update(_delta:float):
 		character.velocity.x = move_toward(character.velocity.x, 0, character.SPEED)
 		character.velocity.z = move_toward(character.velocity.z, 0, character.SPEED)
 	
-	
 	if animationPlayer.is_playing() == false:
 		state_machine.switchTo("Idle")
+		
 	if nextAttackState != '' && can_attack_again && character.attackKey_pressed:
 		state_machine.switchTo(nextAttackState)
 
-
 func _on_hit_box_body_entered(body):
-	var test_a = body.is_in_group("Enemy")
-	print('is in group enyemy:', test_a)
 	if body.is_in_group("Enemy"):
-		print('damage: ', damage)
 		body.applyDamge(damage)
 		
-		var position_body = body.global_position
-		position_body.y = 1.5
-		VFX_Hit.global_position = position_body.y
+		var bodyPosition = body.global_position
+		bodyPosition.y += 1.5
+		VFX_Hit.global_position = position
 		VFX_Hit.restart()
 		remainSlideDuration = 0
 
