@@ -1,11 +1,14 @@
 extends StateBase
 
 
-# Called when the node enters the scene tree for the first time.
-func _ready():
-	pass # Replace with function body.
+@export var collisionShape3D: CollisionShape3D
 
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
-	pass
+func enter():
+	super.enter()
+	character.velocity = Vector3.ZERO
+	
+	collisionShape3D.disabled = true
+	
+	await get_tree().create_timer(3).timeout
+	character.queue_free()
+	

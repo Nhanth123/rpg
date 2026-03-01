@@ -10,6 +10,9 @@ var lookDir2D: Vector2
 func state_update(_delta:float):
 	if animationPlayer.is_playing() == false:
 		state_machine.switchTo('ChasePlayer')
+	
+	if character.currentHealth == 0:
+		state_machine.switchTo('Dead')
 
 func enableHitBox():
 	hitBoxCollisionShap.disabled = false

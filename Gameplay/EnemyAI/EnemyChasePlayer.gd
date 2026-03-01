@@ -14,3 +14,6 @@ func state_update(_delta: float):
 	if character.velocity.length() > 0.2:
 		var lookDir = Vector2(character.velocity.z, character.velocity.x)
 		character.visual.rotation.y = lookDir.angle()
+	
+	if character.currentHealth == 0:
+		state_machine.switchTo('Dead')
