@@ -11,6 +11,9 @@ var direction : Vector3
 var slideKey_pressed: bool
 var attackKey_pressed: bool
 
+var maxHealth: int = 100
+var currentHealth: int 
+
 var coinNumber: int:
 	set(newValue):
 		coinNumber = newValue
@@ -35,5 +38,9 @@ func AddCoin(value: int):
 	#print(coinNumber)
 	
 func takeDamage(damage: int):
-	print('The player take damage: ', damage)
+	currentHealth -= damage
+	currentHealth = clamp(currentHealth, 0, maxHealth)
+	print('The player take damage: ', damage, "current health: ", currentHealth)
+	
+	get_node('StateMachine').switchTo('Hurt')
 	
