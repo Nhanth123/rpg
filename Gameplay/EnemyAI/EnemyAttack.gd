@@ -33,7 +33,7 @@ func exit():
 	
 func _on_hit_box_body_entered(body):
 	if body.is_in_group('Player'):
-		body.takeDamage(damage)
+		body.takeDamage(damage, character.global_position)
 		
 func playSmashVFX():
 	vfxAnimationPlayer.play('PlayParticle')

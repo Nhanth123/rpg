@@ -37,10 +37,13 @@ func AddCoin(value: int):
 	coinNumber += value
 	#print(coinNumber)
 	
-func takeDamage(damage: int):
+func takeDamage(damage: int, enemy_position:Vector3):
 	currentHealth -= damage
 	currentHealth = clamp(currentHealth, 0, maxHealth)
 	print('The player take damage: ', damage, "current health: ", currentHealth)
 	
 	get_node('StateMachine').switchTo('Hurt')
+	
+	if get_node('StateMachine').current_state.name == 'Hurt':
+		get_node('StateMachine').current_state.pushBackDir = (global_position - enemy_position).normalized()
 	
