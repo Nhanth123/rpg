@@ -38,9 +38,9 @@ func AddCoin(value: int):
 	#print(coinNumber)
 	
 func takeDamage(damage: int, enemy_position:Vector3):
-	currentHealth -= damage
+	currentHealth = currentHealth - damage
 	currentHealth = clamp(currentHealth, 0, maxHealth)
-	print('The player take damage: ', damage, "current health: ", currentHealth)
+	print('The player took damage: ', damage, ". Current health: ", currentHealth)
 	
 	get_node('StateMachine').switchTo('Hurt')
 	

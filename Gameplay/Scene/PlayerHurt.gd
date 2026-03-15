@@ -9,6 +9,9 @@ func enter():
 	super.enter()
 	character.velocity  = Vector3.ZERO
 	materialEffectAnimationPlayer.play('Hurt_flash')
+	
+	if character.currentHealth == 0:
+		state_machine.switchTo('Dead')
 
 func state_update(_delta: float):
 	character.velocity = pushBackDir * pushBackSpeed * _delta
