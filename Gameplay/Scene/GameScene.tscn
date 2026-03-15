@@ -1,4 +1,4 @@
-[gd_scene load_steps=80 format=3 uid="uid://bv188u353pcw2"]
+[gd_scene load_steps=83 format=3 uid="uid://bv188u353pcw2"]
 
 [ext_resource type="PackedScene" uid="uid://xm3a5j45elv3" path="res://Asset/Scene/GameLevelScene.tscn" id="1_04uql"]
 [ext_resource type="Material" uid="uid://dsxg0h0pajegl" path="res://Asset/Characters/MainCharacter/LittleAdventurerAndie_Material.tres" id="2_2yvkv"]
@@ -5055,6 +5055,43 @@ _data = {
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_6thgy"]
 
+[sub_resource type="Animation" id="Animation_c5cmg"]
+resource_name = "Hurt_flash"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:material_override:emission")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 0, 0, 1), Color(0, 0, 0, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_pr82o"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:material_override:emission")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0, 0, 0, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_s473b"]
+_data = {
+"Hurt_flash": SubResource("Animation_c5cmg"),
+"RESET": SubResource("Animation_pr82o")
+}
+
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_sg72u"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_yj4j2"]
@@ -7626,8 +7663,9 @@ VFX_Blade = NodePath("../../VisualNode/VFX/Sword_VFX_Models/RootNode/Blade VFX 0
 VFX_Hit = NodePath("../../VisualNode/VFX/hit_particle")
 animationName = "LittleAdventurerAndie_ATTACK_03"
 
-[node name="Hurt" type="Node3D" parent="Player/StateMachine"]
+[node name="Hurt" type="Node3D" parent="Player/StateMachine" node_paths=PackedStringArray("materialEffectAnimationPlayer")]
 script = ExtResource("7_7vuwt")
+materialEffectAnimationPlayer = NodePath("../../VisualNode/MaterialEffectAnimationPlayer")
 animationName = "LittleAdventurerAndie_Hurt"
 
 [node name="VisualNode" type="Node3D" parent="Player"]
@@ -8419,6 +8457,12 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.85, 1)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 1.5, 2)
 shape = SubResource("BoxShape3D_6thgy")
 disabled = true
+
+[node name="MaterialEffectAnimationPlayer" type="AnimationPlayer" parent="Player/VisualNode"]
+root_node = NodePath("../RootNode/LittleAdventurerAndie_GameRig/Skeleton3D/LittleAdventurerAndieMesh")
+libraries = {
+"": SubResource("AnimationLibrary_s473b")
+}
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Player"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
