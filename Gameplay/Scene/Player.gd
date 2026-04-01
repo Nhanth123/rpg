@@ -12,7 +12,10 @@ var slideKey_pressed: bool
 var attackKey_pressed: bool
 
 var maxHealth: int = 100
-var currentHealth: int 
+var currentHealth: int:
+	set(new_value):
+		currentHealth = new_value
+		emit_signal("playerHealthUpdated", currentHealth, maxHealth)
 
 var coinNumber: int:
 	set(newValue):
@@ -20,6 +23,7 @@ var coinNumber: int:
 		emit_signal("coinNumberUpdate", coinNumber)
 
 signal coinNumberUpdate(newValue)
+signal playerHealthUpdated(newValue, maxValue)
 
 func _physics_process(_delta: float) -> void:
 	if not is_on_floor():
