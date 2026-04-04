@@ -9,7 +9,6 @@ func _ready():
 	player.playerHealthUpdated.connect(UpdateHealthBar)
 	
 	UpdateHealthBar(player.currentHealth, player.maxHealth)
-	
 
 func UpdateLabelCoin(newvalue: int):
 	coinLabel.text = str(newvalue)
