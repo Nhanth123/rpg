@@ -1,4 +1,4 @@
-[gd_scene load_steps=88 format=3 uid="uid://bv188u353pcw2"]
+[gd_scene load_steps=89 format=3 uid="uid://bv188u353pcw2"]
 
 [ext_resource type="PackedScene" uid="uid://xm3a5j45elv3" path="res://Asset/Scene/GameLevelScene.tscn" id="1_04uql"]
 [ext_resource type="Material" uid="uid://dsxg0h0pajegl" path="res://Asset/Characters/MainCharacter/LittleAdventurerAndie_Material.tres" id="2_2yvkv"]
@@ -24,6 +24,7 @@
 [ext_resource type="Script" path="res://Gameplay/EnemyAI/EnemyAttack.gd" id="18_hfoj5"]
 [ext_resource type="Script" path="res://Gameplay/EnemyAI/EnemyDead.gd" id="19_n4guo"]
 [ext_resource type="Material" uid="uid://bbxy4x3sqrxja" path="res://Asset/VFX/Shader/Alpha.tres" id="21_uxmwd"]
+[ext_resource type="Script" path="res://Gameplay/Scene/Collectable_HealingOrb.gd" id="25_4kba8"]
 [ext_resource type="PackedScene" uid="uid://dy17g1ka2s078" path="res://Asset/VFX/Scene/orb.tscn" id="25_gqotw"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ksbdj"]
@@ -8987,6 +8988,7 @@ navigation_mesh = SubResource("NavigationMesh_rplgd")
 [node name="Level" parent="NavigationRegion3D" instance=ExtResource("1_04uql")]
 
 [node name="Collectable_HealingOrb" type="Node3D" parent="."]
+script = ExtResource("25_4kba8")
 
 [node name="VisualNode" parent="Collectable_HealingOrb" instance=ExtResource("25_gqotw")]
 
@@ -8998,3 +9000,4 @@ shape = SubResource("SphereShape3D_xsysb")
 
 [connection signal="body_entered" from="Player/VisualNode/HitBox" to="Player/StateMachine/Attack" method="_on_hit_box_body_entered"]
 [connection signal="body_entered" from="Enemy/VisualNode/HitBox" to="Enemy/StateMachine/Attack" method="_on_hit_box_body_entered"]
+[connection signal="body_entered" from="Collectable_HealingOrb/Area3D" to="Collectable_HealingOrb" method="_on_area_3d_body_entered"]
