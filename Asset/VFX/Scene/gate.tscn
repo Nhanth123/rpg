@@ -1,0 +1,21 @@
+[gd_scene load_steps=3 format=3 uid="uid://cfbglyate2lva"]
+
+[ext_resource type="PackedScene" uid="uid://bustlpb61cwnq" path="res://Asset/Environment/Scene/gate_wide.tscn" id="1_a33bu"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_bt08x"]
+size = Vector3(7, 2, 0.5)
+
+[node name="Gate" type="Node3D"]
+
+[node name="VíualNode" type="Node3D" parent="."]
+
+[node name="Gate_wide" parent="VíualNode" instance=ExtResource("1_a33bu")]
+
+[node name="Gate_wide2" parent="VíualNode" instance=ExtResource("1_a33bu")]
+transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 0, 0, 0)
+
+[node name="StaticBody3D" type="StaticBody3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+shape = SubResource("BoxShape3D_bt08x")

@@ -1,4 +1,4 @@
-[gd_scene load_steps=86 format=3 uid="uid://bv188u353pcw2"]
+[gd_scene load_steps=87 format=3 uid="uid://bv188u353pcw2"]
 
 [ext_resource type="PackedScene" uid="uid://xm3a5j45elv3" path="res://Asset/Scene/GameLevelScene.tscn" id="1_04uql"]
 [ext_resource type="Material" uid="uid://dsxg0h0pajegl" path="res://Asset/Characters/MainCharacter/LittleAdventurerAndie_Material.tres" id="2_2yvkv"]
@@ -24,6 +24,7 @@
 [ext_resource type="Script" path="res://Gameplay/EnemyAI/EnemyAttack.gd" id="18_hfoj5"]
 [ext_resource type="Script" path="res://Gameplay/EnemyAI/EnemyDead.gd" id="19_n4guo"]
 [ext_resource type="Material" uid="uid://bbxy4x3sqrxja" path="res://Asset/VFX/Shader/Alpha.tres" id="21_uxmwd"]
+[ext_resource type="PackedScene" uid="uid://cfbglyate2lva" path="res://Asset/VFX/Scene/gate.tscn" id="25_dkc4c"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ksbdj"]
 resource_name = "Material.001"
@@ -8982,6 +8983,9 @@ avoidance_enabled = true
 navigation_mesh = SubResource("NavigationMesh_rplgd")
 
 [node name="Level" parent="NavigationRegion3D" instance=ExtResource("1_04uql")]
+
+[node name="Gate" parent="." instance=ExtResource("25_dkc4c")]
+transform = Transform3D(0.999963, 0, 0.00858691, 0, 1, 0, -0.00858691, 0, 0.999963, 0, 0, -24)
 
 [connection signal="body_entered" from="Player/VisualNode/HitBox" to="Player/StateMachine/Attack" method="_on_hit_box_body_entered"]
 [connection signal="body_entered" from="Enemy/VisualNode/HitBox" to="Enemy/StateMachine/Attack" method="_on_hit_box_body_entered"]
