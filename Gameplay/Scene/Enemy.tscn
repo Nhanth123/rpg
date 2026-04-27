@@ -2525,7 +2525,7 @@ initial_state = NodePath("Spawn")
 
 [node name="Spawn" type="Node3D" parent="StateMachine" node_paths=PackedStringArray("materialEffectAnimationPlayer")]
 script = ExtResource("3_8v1vw")
-materialEffectAnimationPlayer = NodePath("")
+materialEffectAnimationPlayer = NodePath("../../VisualNode/MaterialEffectAnimationPlayer")
 animationName = "NPC_01_IDEL"
 
 [node name="ChasePlayer" type="Node3D" parent="StateMachine"]
@@ -2534,14 +2534,14 @@ animationName = "NPC_01_WALK"
 
 [node name="Attack" type="Node3D" parent="StateMachine" node_paths=PackedStringArray("hitBoxCollisionShap", "vfxAnimationPlayer")]
 script = ExtResource("5_demn8")
-hitBoxCollisionShap = NodePath("")
-vfxAnimationPlayer = NodePath("")
+hitBoxCollisionShap = NodePath("../../VisualNode/HitBox/CollisionShape3D")
+vfxAnimationPlayer = NodePath("../../VisualNode/VFX/Smash_particle/AnimationPlayer")
 animationName = "NPC_01_ATTACK"
 
 [node name="Dead" type="Node3D" parent="StateMachine" node_paths=PackedStringArray("collisionShape3D", "materialEffectAnimationPlayer")]
 script = ExtResource("6_hkd55")
-collisionShape3D = NodePath("")
-materialEffectAnimationPlayer = NodePath("")
+collisionShape3D = NodePath("../../CollisionShape3D")
+materialEffectAnimationPlayer = NodePath("../../VisualNode/MaterialEffectAnimationPlayer")
 animationName = "NPC_01_DEAD"
 
 [node name="VisualNode" type="Node3D" parent="."]

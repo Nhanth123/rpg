@@ -1,7 +1,6 @@
 extends Node3D
 
 var spawnPoints: Array[Node]
-
 var enemyNodes: Array[Node]
 
 var hasSpawned: bool
@@ -10,7 +9,7 @@ func _ready():
 	spawnPoints = get_node("SpawnPoints").get_children()
 	
 	
-func _process(delta):
+func _process(_delta):
 	pass
 	
 

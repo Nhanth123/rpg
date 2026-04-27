@@ -14,4 +14,3 @@ func state_update(_delta:float):
 func enter():
 	super.enter()
 	materialEffectAnimationPlayer.play('Spawn')
-	

@@ -6128,19 +6128,19 @@ script = ExtResource("19_haxd0")
 [node name="SpawnPoints" type="Node3D" parent="Level_01"]
 
 [node name="SpawnPoint" type="Node3D" parent="Level_01/SpawnPoints"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.9886, 0.834939, -19.2915)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8, 0.835, -19)
 
 [node name="Base_low" type="MeshInstance3D" parent="Level_01/SpawnPoints/SpawnPoint"]
-transform = Transform3D(55.8582, -55.8582, -9.41699e-06, 2.35425e-06, -9.41699e-06, 78.9954, -55.8582, -55.8582, 0, 0, 0, 0)
+transform = Transform3D(55.8582, -55.8582, -9.41699e-06, 2.35425e-06, -9.41699e-06, 78.9954, -55.8582, -55.8582, 0, 0, -0.756436, 0)
 material_override = SubResource("StandardMaterial3D_qfw3r")
 mesh = SubResource("ArrayMesh_loggk")
 skeleton = NodePath("")
 
 [node name="SpawnPoint2" type="Node3D" parent="Level_01/SpawnPoints"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.9886, 0.834939, -19.2915)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8, 0.835, -19)
 
 [node name="Base_low" type="MeshInstance3D" parent="Level_01/SpawnPoints/SpawnPoint2"]
-transform = Transform3D(55.8582, -55.8582, -9.41699e-06, 2.35425e-06, -9.41699e-06, 78.9954, -55.8582, -55.8582, 0, 0, 0, 0)
+transform = Transform3D(55.8582, -55.8582, -9.41699e-06, 2.35425e-06, -9.41699e-06, 78.9954, -55.8582, -55.8582, 0, 0, -0.778299, 0)
 material_override = SubResource("StandardMaterial3D_qfw3r")
 mesh = SubResource("ArrayMesh_loggk")
 skeleton = NodePath("")
@@ -6149,7 +6149,7 @@ skeleton = NodePath("")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -12)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Level_01/SpawnTiggerZone"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, -4.63723)
 shape = SubResource("BoxShape3D_xvh0e")
 
 [connection signal="body_entered" from="Player/VisualNode/HitBox" to="Player/StateMachine/Attack" method="_on_hit_box_body_entered"]
