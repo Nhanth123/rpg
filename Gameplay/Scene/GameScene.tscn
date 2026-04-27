@@ -6119,38 +6119,117 @@ navigation_mesh = SubResource("NavigationMesh_rplgd")
 
 [node name="Level" parent="NavigationRegion3D" instance=ExtResource("1_04uql")]
 
-[node name="Gate" parent="." instance=ExtResource("25_dkc4c")]
-transform = Transform3D(0.999963, 0, 0.00858691, 0, 1, 0, -0.00858691, 0, 0.999963, 0, 0, -24)
+[node name="GameLevel" type="Node3D" parent="."]
 
-[node name="Level_01" type="Node3D" parent="."]
+[node name="Level_01" type="Node3D" parent="GameLevel"]
 script = ExtResource("19_haxd0")
 
-[node name="SpawnPoints" type="Node3D" parent="Level_01"]
+[node name="SpawnPoints" type="Node3D" parent="GameLevel/Level_01"]
 
-[node name="SpawnPoint" type="Node3D" parent="Level_01/SpawnPoints"]
+[node name="SpawnPoint" type="Node3D" parent="GameLevel/Level_01/SpawnPoints"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8, 0.835, -19)
 
-[node name="Base_low" type="MeshInstance3D" parent="Level_01/SpawnPoints/SpawnPoint"]
+[node name="Base_low" type="MeshInstance3D" parent="GameLevel/Level_01/SpawnPoints/SpawnPoint"]
 transform = Transform3D(55.8582, -55.8582, -9.41699e-06, 2.35425e-06, -9.41699e-06, 78.9954, -55.8582, -55.8582, 0, 0, -0.756436, 0)
 material_override = SubResource("StandardMaterial3D_qfw3r")
 mesh = SubResource("ArrayMesh_loggk")
 skeleton = NodePath("")
 
-[node name="SpawnPoint2" type="Node3D" parent="Level_01/SpawnPoints"]
+[node name="SpawnPoint2" type="Node3D" parent="GameLevel/Level_01/SpawnPoints"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8, 0.835, -19)
 
-[node name="Base_low" type="MeshInstance3D" parent="Level_01/SpawnPoints/SpawnPoint2"]
+[node name="Base_low" type="MeshInstance3D" parent="GameLevel/Level_01/SpawnPoints/SpawnPoint2"]
 transform = Transform3D(55.8582, -55.8582, -9.41699e-06, 2.35425e-06, -9.41699e-06, 78.9954, -55.8582, -55.8582, 0, 0, -0.778299, 0)
 material_override = SubResource("StandardMaterial3D_qfw3r")
 mesh = SubResource("ArrayMesh_loggk")
 skeleton = NodePath("")
 
-[node name="SpawnTiggerZone" type="Area3D" parent="Level_01"]
+[node name="SpawnTiggerZone" type="Area3D" parent="GameLevel/Level_01"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -12)
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Level_01/SpawnTiggerZone"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="GameLevel/Level_01/SpawnTiggerZone"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, -4.63723)
 shape = SubResource("BoxShape3D_xvh0e")
 
+[node name="Gate" parent="GameLevel/Level_01" instance=ExtResource("25_dkc4c")]
+transform = Transform3D(0.999963, 0, 0.00858691, 0, 1, 0, -0.00858691, 0, 0.999963, 0, 0, -24)
+
+[node name="Level_02" type="Node3D" parent="GameLevel"]
+script = ExtResource("19_haxd0")
+
+[node name="SpawnPoints" type="Node3D" parent="GameLevel/Level_02"]
+
+[node name="SpawnPoint" type="Node3D" parent="GameLevel/Level_02/SpawnPoints"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.98, -43)
+
+[node name="Base_low" type="MeshInstance3D" parent="GameLevel/Level_02/SpawnPoints/SpawnPoint"]
+transform = Transform3D(55.8582, -55.8582, -9.41699e-06, 2.35425e-06, -9.41699e-06, 78.9954, -55.8582, -55.8582, 0, 0, -0.756436, 0)
+material_override = SubResource("StandardMaterial3D_qfw3r")
+mesh = SubResource("ArrayMesh_loggk")
+skeleton = NodePath("")
+
+[node name="SpawnPoint2" type="Node3D" parent="GameLevel/Level_02/SpawnPoints"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.5, 1.98, -45.5)
+
+[node name="Base_low" type="MeshInstance3D" parent="GameLevel/Level_02/SpawnPoints/SpawnPoint2"]
+transform = Transform3D(55.8582, -55.8582, -9.41699e-06, 2.35425e-06, -9.41699e-06, 78.9954, -55.8582, -55.8582, 0, 0, -0.778299, 0)
+material_override = SubResource("StandardMaterial3D_qfw3r")
+mesh = SubResource("ArrayMesh_loggk")
+skeleton = NodePath("")
+
+[node name="SpawnTiggerZone" type="Area3D" parent="GameLevel/Level_02"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, -37.5)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="GameLevel/Level_02/SpawnTiggerZone"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, -4.63723)
+shape = SubResource("BoxShape3D_xvh0e")
+
+[node name="Gate" parent="GameLevel/Level_02" instance=ExtResource("25_dkc4c")]
+transform = Transform3D(0.999963, 0, 0.00858691, 0, 1, 0, -0.00858691, 0, 0.999963, 0, 2, -53)
+
+[node name="Level_03" type="Node3D" parent="GameLevel"]
+script = ExtResource("19_haxd0")
+
+[node name="SpawnPoints" type="Node3D" parent="GameLevel/Level_03"]
+
+[node name="SpawnPoint" type="Node3D" parent="GameLevel/Level_03/SpawnPoints"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8, 5.98, -75)
+
+[node name="Base_low" type="MeshInstance3D" parent="GameLevel/Level_03/SpawnPoints/SpawnPoint"]
+transform = Transform3D(55.8582, -55.8582, -9.41699e-06, 2.35425e-06, -9.41699e-06, 78.9954, -55.8582, -55.8582, 0, 0, -0.756436, 0)
+material_override = SubResource("StandardMaterial3D_qfw3r")
+mesh = SubResource("ArrayMesh_loggk")
+skeleton = NodePath("")
+
+[node name="SpawnPoint2" type="Node3D" parent="GameLevel/Level_03/SpawnPoints"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5.98, -73)
+
+[node name="Base_low" type="MeshInstance3D" parent="GameLevel/Level_03/SpawnPoints/SpawnPoint2"]
+transform = Transform3D(55.8582, -55.8582, -9.41699e-06, 2.35425e-06, -9.41699e-06, 78.9954, -55.8582, -55.8582, 0, 0, -0.778299, 0)
+material_override = SubResource("StandardMaterial3D_qfw3r")
+mesh = SubResource("ArrayMesh_loggk")
+skeleton = NodePath("")
+
+[node name="SpawnPoint3" type="Node3D" parent="GameLevel/Level_03/SpawnPoints"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7, 5.98, -75)
+
+[node name="Base_low" type="MeshInstance3D" parent="GameLevel/Level_03/SpawnPoints/SpawnPoint3"]
+transform = Transform3D(55.8582, -55.8582, -9.41699e-06, 2.35425e-06, -9.41699e-06, 78.9954, -55.8582, -55.8582, 0, 0, -0.778299, 0)
+material_override = SubResource("StandardMaterial3D_qfw3r")
+mesh = SubResource("ArrayMesh_loggk")
+skeleton = NodePath("")
+
+[node name="SpawnTiggerZone" type="Area3D" parent="GameLevel/Level_03"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 6, -67.5)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="GameLevel/Level_03/SpawnTiggerZone"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, -4.63723)
+shape = SubResource("BoxShape3D_xvh0e")
+
+[node name="Gate" parent="GameLevel/Level_03" instance=ExtResource("25_dkc4c")]
+transform = Transform3D(0.999963, 0, 0.00858691, 0, 1, 0, -0.00858691, 0, 0.999963, 0, 6, -85)
+
 [connection signal="body_entered" from="Player/VisualNode/HitBox" to="Player/StateMachine/Attack" method="_on_hit_box_body_entered"]
-[connection signal="body_entered" from="Level_01/SpawnTiggerZone" to="Level_01" method="_on_spawn_tigger_zone_body_entered"]
+[connection signal="body_entered" from="GameLevel/Level_01/SpawnTiggerZone" to="GameLevel/Level_01" method="_on_spawn_tigger_zone_body_entered"]
+[connection signal="body_entered" from="GameLevel/Level_02/SpawnTiggerZone" to="GameLevel/Level_02" method="_on_spawn_tigger_zone_body_entered"]
+[connection signal="body_entered" from="GameLevel/Level_03/SpawnTiggerZone" to="GameLevel/Level_03" method="_on_spawn_tigger_zone_body_entered"]

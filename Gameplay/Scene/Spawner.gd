@@ -4,13 +4,23 @@ var spawnPoints: Array[Node]
 var enemyNodes: Array[Node]
 
 var hasSpawned: bool
+var gate: Node3D
+var levelIsFinished : bool
 
 func _ready():
 	spawnPoints = get_node("SpawnPoints").get_children()
+	gate = get_node("Gate")
 	
 	
 func _process(_delta):
-	pass
+	if enemyNodes.is_empty() || levelIsFinished:
+		return
+	
+	for enemy in enemyNodes:
+		if enemy != null:
+			return
+	levelIsFinished = true
+	gate.open()
 	
 
 func _on_spawn_tigger_zone_body_entered(body):
