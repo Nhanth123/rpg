@@ -1,4 +1,4 @@
-[gd_scene load_steps=67 format=3 uid="uid://bv188u353pcw2"]
+[gd_scene load_steps=72 format=3 uid="uid://bv188u353pcw2"]
 
 [ext_resource type="PackedScene" uid="uid://xm3a5j45elv3" path="res://Asset/Scene/GameLevelScene.tscn" id="1_04uql"]
 [ext_resource type="Material" uid="uid://dsxg0h0pajegl" path="res://Asset/Characters/MainCharacter/LittleAdventurerAndie_Material.tres" id="2_2yvkv"]
@@ -20,6 +20,7 @@
 [ext_resource type="Script" path="res://Gameplay/Scene/Spawner.gd" id="19_haxd0"]
 [ext_resource type="PackedScene" uid="uid://bj8v5o040vyyn" path="res://Asset/Environment/Scene/portal.tscn" id="24_gdp4v"]
 [ext_resource type="PackedScene" uid="uid://cfbglyate2lva" path="res://Asset/VFX/Scene/gate.tscn" id="25_dkc4c"]
+[ext_resource type="Script" path="res://Gameplay/Scene/SubViewport.gd" id="25_p7xsf"]
 [ext_resource type="Texture2D" uid="uid://wr1irf2y371x" path="res://Asset/Environment/Texture/Base_Color.png" id="26_ygxsl"]
 [ext_resource type="Texture2D" uid="uid://duoeqvqtin52j" path="res://Asset/Environment/Texture/Base_AO.png" id="27_ocmt5"]
 [ext_resource type="Texture2D" uid="uid://k5lkttmr1bn0" path="res://Asset/Environment/Texture/pillar_35_low_E.png" id="28_i7dwf"]
@@ -5178,10 +5179,26 @@ size = Vector3(35, 2, 1)
 [sub_resource type="BoxShape3D" id="BoxShape3D_vjyxn"]
 size = Vector3(3, 6.5, 1)
 
+[sub_resource type="ViewportTexture" id="ViewportTexture_38o7g"]
+viewport_path = NodePath("GameLevel/Portal/Sprite3D/SubViewport")
+
+[sub_resource type="LabelSettings" id="LabelSettings_iubq7"]
+font_size = 75
+font_color = Color(1, 0.929412, 0.192157, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_r5nfl"]
+transparency = 1
+albedo_color = Color(0, 0, 0, 1)
+albedo_texture = ExtResource("7_6rxvj")
+emission_enabled = true
+emission = Color(1, 0.929412, 0.192157, 1)
+
+[sub_resource type="QuadMesh" id="QuadMesh_oioir"]
+
 [node name="Node3D" type="Node3D"]
 
 [node name="Player" type="CharacterBody3D" parent="." groups=["Player"]]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.897196, 3.3743, -11.314)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.897, 10, -95)
 script = ExtResource("2_7ms18")
 
 [node name="StateMachine" type="Node3D" parent="Player"]
@@ -6241,6 +6258,26 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.5, 10, -99.5)
 [node name="CollisionShape3D" type="CollisionShape3D" parent="GameLevel/Portal/Area3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.5, 1.5, 0)
 shape = SubResource("BoxShape3D_vjyxn")
+
+[node name="Sprite3D" type="Sprite3D" parent="GameLevel/Portal"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.5, 5.5, 0.5)
+texture = SubResource("ViewportTexture_38o7g")
+
+[node name="SubViewport" type="SubViewport" parent="GameLevel/Portal/Sprite3D"]
+transparent_bg = true
+size = Vector2i(200, 100)
+script = ExtResource("25_p7xsf")
+
+[node name="Label" type="Label" parent="GameLevel/Portal/Sprite3D/SubViewport"]
+offset_right = 40.0
+offset_bottom = 23.0
+text = "1234567"
+label_settings = SubResource("LabelSettings_iubq7")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="GameLevel/Portal"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.5, 6.3, 0)
+material_override = SubResource("StandardMaterial3D_r5nfl")
+mesh = SubResource("QuadMesh_oioir")
 
 [connection signal="body_entered" from="Player/VisualNode/HitBox" to="Player/StateMachine/Attack" method="_on_hit_box_body_entered"]
 [connection signal="body_entered" from="GameLevel/Level_01/SpawnTiggerZone" to="GameLevel/Level_01" method="_on_spawn_tigger_zone_body_entered"]
