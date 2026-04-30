@@ -1,4 +1,4 @@
-[gd_scene load_steps=65 format=3 uid="uid://bv188u353pcw2"]
+[gd_scene load_steps=67 format=3 uid="uid://bv188u353pcw2"]
 
 [ext_resource type="PackedScene" uid="uid://xm3a5j45elv3" path="res://Asset/Scene/GameLevelScene.tscn" id="1_04uql"]
 [ext_resource type="Material" uid="uid://dsxg0h0pajegl" path="res://Asset/Characters/MainCharacter/LittleAdventurerAndie_Material.tres" id="2_2yvkv"]
@@ -18,6 +18,7 @@
 [ext_resource type="Script" path="res://Gameplay/State/PlayerSlide.gd" id="10_07ey8"]
 [ext_resource type="PackedScene" uid="uid://k5prn3b4lgvq" path="res://Asset/VFX/Scene/hit_particle.tscn" id="11_ovdru"]
 [ext_resource type="Script" path="res://Gameplay/Scene/Spawner.gd" id="19_haxd0"]
+[ext_resource type="PackedScene" uid="uid://bj8v5o040vyyn" path="res://Asset/Environment/Scene/portal.tscn" id="24_gdp4v"]
 [ext_resource type="PackedScene" uid="uid://cfbglyate2lva" path="res://Asset/VFX/Scene/gate.tscn" id="25_dkc4c"]
 [ext_resource type="Texture2D" uid="uid://wr1irf2y371x" path="res://Asset/Environment/Texture/Base_Color.png" id="26_ygxsl"]
 [ext_resource type="Texture2D" uid="uid://duoeqvqtin52j" path="res://Asset/Environment/Texture/Base_AO.png" id="27_ocmt5"]
@@ -5174,6 +5175,9 @@ shadow_mesh = SubResource("ArrayMesh_iwc6x")
 [sub_resource type="BoxShape3D" id="BoxShape3D_xvh0e"]
 size = Vector3(35, 2, 1)
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_vjyxn"]
+size = Vector3(3, 6.5, 1)
+
 [node name="Node3D" type="Node3D"]
 
 [node name="Player" type="CharacterBody3D" parent="." groups=["Player"]]
@@ -6228,6 +6232,15 @@ shape = SubResource("BoxShape3D_xvh0e")
 
 [node name="Gate" parent="GameLevel/Level_03" instance=ExtResource("25_dkc4c")]
 transform = Transform3D(0.999963, 0, 0.00858691, 0, 1, 0, -0.00858691, 0, 0.999963, 0, 6, -85)
+
+[node name="Portal" parent="GameLevel" instance=ExtResource("24_gdp4v")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.5, 10, -99.5)
+
+[node name="Area3D" type="Area3D" parent="GameLevel/Portal"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="GameLevel/Portal/Area3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.5, 1.5, 0)
+shape = SubResource("BoxShape3D_vjyxn")
 
 [connection signal="body_entered" from="Player/VisualNode/HitBox" to="Player/StateMachine/Attack" method="_on_hit_box_body_entered"]
 [connection signal="body_entered" from="GameLevel/Level_01/SpawnTiggerZone" to="GameLevel/Level_01" method="_on_spawn_tigger_zone_body_entered"]
