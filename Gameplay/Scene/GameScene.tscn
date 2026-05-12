@@ -1,4 +1,4 @@
-[gd_scene load_steps=73 format=3 uid="uid://bv188u353pcw2"]
+[gd_scene load_steps=81 format=3 uid="uid://bv188u353pcw2"]
 
 [ext_resource type="PackedScene" uid="uid://xm3a5j45elv3" path="res://Asset/Scene/GameLevelScene.tscn" id="1_04uql"]
 [ext_resource type="Material" uid="uid://dsxg0h0pajegl" path="res://Asset/Characters/MainCharacter/LittleAdventurerAndie_Material.tres" id="2_2yvkv"]
@@ -17,7 +17,15 @@
 [ext_resource type="Script" path="res://Gameplay/State/PlayerAttack.gd" id="8_vvdjt"]
 [ext_resource type="Script" path="res://Gameplay/State/PlayerSlide.gd" id="10_07ey8"]
 [ext_resource type="PackedScene" uid="uid://k5prn3b4lgvq" path="res://Asset/VFX/Scene/hit_particle.tscn" id="11_ovdru"]
+[ext_resource type="Texture2D" uid="uid://ccawsi43dcwkf" path="res://Asset/UI/Text_YouMadeIt.png" id="16_jpqct"]
+[ext_resource type="Texture2D" uid="uid://ch22horvt7u3o" path="res://Asset/UI/Line.png" id="17_100s0"]
+[ext_resource type="Texture2D" uid="uid://dgwtgy78acpav" path="res://Asset/UI/Button_Restart.png" id="18_wcdsm"]
 [ext_resource type="Script" path="res://Gameplay/Scene/Spawner.gd" id="19_haxd0"]
+[ext_resource type="Texture2D" uid="uid://c8npx20nnsseq" path="res://Asset/UI/Button_Restart pressed.png" id="19_r572s"]
+[ext_resource type="Texture2D" uid="uid://c8c1twbjnftaj" path="res://Asset/UI/Button_Restart_hover.png" id="20_ykgb0"]
+[ext_resource type="Texture2D" uid="uid://b3pidqujb0qn2" path="res://Asset/UI/Button_MainMenu.png" id="21_nefnh"]
+[ext_resource type="Texture2D" uid="uid://cq4dmmpftf17s" path="res://Asset/UI/Button_MainMenu_pressed.png" id="22_t3iu8"]
+[ext_resource type="Texture2D" uid="uid://i6y04e36frcg" path="res://Asset/UI/Button_MainMenu_hover.png" id="23_1i2yh"]
 [ext_resource type="PackedScene" uid="uid://bj8v5o040vyyn" path="res://Asset/Environment/Scene/portal.tscn" id="24_gdp4v"]
 [ext_resource type="Script" path="res://Asset/Environment/Scene/Portal.gd" id="25_cgo5y"]
 [ext_resource type="PackedScene" uid="uid://cfbglyate2lva" path="res://Asset/VFX/Scene/gate.tscn" id="25_dkc4c"]
@@ -5969,7 +5977,7 @@ mesh = SubResource("ArrayMesh_522yp")
 skin = SubResource("Skin_8vbkq")
 
 [node name="BoneAttachment3D" type="BoneAttachment3D" parent="Player/VisualNode/RootNode/LittleAdventurerAndie_GameRig/Skeleton3D"]
-transform = Transform3D(-0.982731, -0.182006, -0.0332737, 0.163547, -0.938593, 0.303786, -0.086524, 0.2931, 0.952154, -0.0120701, 0.0186617, 0.00883369)
+transform = Transform3D(-0.982731, -0.182006, -0.0332738, 0.163547, -0.938593, 0.303786, -0.086524, 0.2931, 0.952154, -0.0120701, 0.0186617, 0.00883369)
 bone_name = "DEF-hand.R"
 bone_idx = 67
 
@@ -5977,7 +5985,7 @@ bone_idx = 67
 transform = Transform3D(-0.00667074, 0.00340051, -0.0238524, 0.0239986, -0.00125771, -0.00689093, -0.00213729, -0.0247357, -0.00292871, 0, 0.002, -0.003)
 
 [node name="BoneAttachment3D2" type="BoneAttachment3D" parent="Player/VisualNode/RootNode/LittleAdventurerAndie_GameRig/Skeleton3D"]
-transform = Transform3D(-0.9141, 0.208866, -0.347552, -0.315291, -0.905083, 0.285325, -0.25497, 0.370396, 0.893192, 0.0120192, 0.0179877, 0.00960926)
+transform = Transform3D(-0.9141, 0.208866, -0.347552, -0.315291, -0.905083, 0.285325, -0.25497, 0.370396, 0.893193, 0.0120192, 0.0179877, 0.00960926)
 bone_name = "DEF-hand.L"
 bone_idx = 32
 
@@ -6117,6 +6125,78 @@ theme_override_styles/background = SubResource("StyleBoxFlat_6hfb7")
 theme_override_styles/fill = SubResource("StyleBoxFlat_tu1uc")
 value = 50.0
 show_percentage = false
+
+[node name="Control_Game" type="Control" parent="UI"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ColorRect" type="ColorRect" parent="UI/Control_Game"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.376471)
+
+[node name="GameFinish" type="CenterContainer" parent="UI/Control_Game"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="UI/Control_Game/GameFinish"]
+layout_mode = 2
+theme_override_constants/separation = 20
+
+[node name="TextureRect" type="TextureRect" parent="UI/Control_Game/GameFinish/VBoxContainer"]
+layout_mode = 2
+texture = ExtResource("16_jpqct")
+
+[node name="TextureRect2" type="TextureRect" parent="UI/Control_Game/GameFinish/VBoxContainer"]
+layout_mode = 2
+texture = ExtResource("17_100s0")
+
+[node name="Btn_Restart" type="TextureButton" parent="UI/Control_Game/GameFinish/VBoxContainer"]
+process_mode = 3
+layout_mode = 2
+texture_normal = ExtResource("18_wcdsm")
+texture_pressed = ExtResource("19_r572s")
+texture_hover = ExtResource("20_ykgb0")
+stretch_mode = 3
+
+[node name="Btn_MainMenu" type="TextureButton" parent="UI/Control_Game/GameFinish/VBoxContainer"]
+process_mode = 3
+layout_mode = 2
+texture_normal = ExtResource("21_nefnh")
+texture_pressed = ExtResource("22_t3iu8")
+texture_hover = ExtResource("23_1i2yh")
+stretch_mode = 3
+
+[node name="GameOver" type="CenterContainer" parent="UI/Control_Game"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="GamePause" type="CenterContainer" parent="UI/Control_Game"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
 
 [node name="Coins" type="Node3D" parent="."]
 visible = false
