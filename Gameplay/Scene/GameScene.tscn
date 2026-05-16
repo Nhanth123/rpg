@@ -1,4 +1,4 @@
-[gd_scene load_steps=81 format=3 uid="uid://bv188u353pcw2"]
+[gd_scene load_steps=87 format=3 uid="uid://bv188u353pcw2"]
 
 [ext_resource type="PackedScene" uid="uid://xm3a5j45elv3" path="res://Asset/Scene/GameLevelScene.tscn" id="1_04uql"]
 [ext_resource type="Material" uid="uid://dsxg0h0pajegl" path="res://Asset/Characters/MainCharacter/LittleAdventurerAndie_Material.tres" id="2_2yvkv"]
@@ -27,12 +27,18 @@
 [ext_resource type="Texture2D" uid="uid://cq4dmmpftf17s" path="res://Asset/UI/Button_MainMenu_pressed.png" id="22_t3iu8"]
 [ext_resource type="Texture2D" uid="uid://i6y04e36frcg" path="res://Asset/UI/Button_MainMenu_hover.png" id="23_1i2yh"]
 [ext_resource type="PackedScene" uid="uid://bj8v5o040vyyn" path="res://Asset/Environment/Scene/portal.tscn" id="24_gdp4v"]
+[ext_resource type="Texture2D" uid="uid://ccxs78bwrumgx" path="res://Asset/UI/Text_GAMEOVER.png" id="24_ghmhq"]
+[ext_resource type="Texture2D" uid="uid://bpdqrpwukluk0" path="res://Asset/UI/Text_PAUSE.png" id="25_2enqa"]
 [ext_resource type="Script" path="res://Asset/Environment/Scene/Portal.gd" id="25_cgo5y"]
 [ext_resource type="PackedScene" uid="uid://cfbglyate2lva" path="res://Asset/VFX/Scene/gate.tscn" id="25_dkc4c"]
 [ext_resource type="Script" path="res://Gameplay/Scene/SubViewport.gd" id="25_p7xsf"]
+[ext_resource type="Texture2D" uid="uid://biu3q2ejc2rio" path="res://Asset/UI/Button_Resume.png" id="26_3dye2"]
+[ext_resource type="Script" path="res://Gameplay/Scene/GameLevel.gd" id="26_lcb7s"]
 [ext_resource type="Texture2D" uid="uid://wr1irf2y371x" path="res://Asset/Environment/Texture/Base_Color.png" id="26_ygxsl"]
+[ext_resource type="Texture2D" uid="uid://cr4g2dpyvgndu" path="res://Asset/UI/Button_Resume_pressed.png" id="27_iwslt"]
 [ext_resource type="Texture2D" uid="uid://duoeqvqtin52j" path="res://Asset/Environment/Texture/Base_AO.png" id="27_ocmt5"]
 [ext_resource type="Texture2D" uid="uid://k5lkttmr1bn0" path="res://Asset/Environment/Texture/pillar_35_low_E.png" id="28_i7dwf"]
+[ext_resource type="Texture2D" uid="uid://boqqrbrayhs18" path="res://Asset/UI/Button_Resume_hover.png" id="28_ygprr"]
 [ext_resource type="Texture2D" uid="uid://ddkbia2qnp5tu" path="res://Asset/Environment/Texture/Base_N.png" id="29_d4y5u"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ksbdj"]
@@ -6144,6 +6150,7 @@ grow_vertical = 2
 color = Color(0, 0, 0, 0.376471)
 
 [node name="GameFinish" type="CenterContainer" parent="UI/Control_Game"]
+visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -6181,6 +6188,7 @@ texture_hover = ExtResource("23_1i2yh")
 stretch_mode = 3
 
 [node name="GameOver" type="CenterContainer" parent="UI/Control_Game"]
+visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -6188,6 +6196,34 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="UI/Control_Game/GameOver"]
+layout_mode = 2
+theme_override_constants/separation = 20
+
+[node name="TextureRect" type="TextureRect" parent="UI/Control_Game/GameOver/VBoxContainer"]
+layout_mode = 2
+texture = ExtResource("24_ghmhq")
+
+[node name="TextureRect2" type="TextureRect" parent="UI/Control_Game/GameOver/VBoxContainer"]
+layout_mode = 2
+texture = ExtResource("17_100s0")
+
+[node name="Btn_Restart" type="TextureButton" parent="UI/Control_Game/GameOver/VBoxContainer"]
+process_mode = 3
+layout_mode = 2
+texture_normal = ExtResource("18_wcdsm")
+texture_pressed = ExtResource("19_r572s")
+texture_hover = ExtResource("20_ykgb0")
+stretch_mode = 3
+
+[node name="Btn_MainMenu" type="TextureButton" parent="UI/Control_Game/GameOver/VBoxContainer"]
+process_mode = 3
+layout_mode = 2
+texture_normal = ExtResource("21_nefnh")
+texture_pressed = ExtResource("22_t3iu8")
+texture_hover = ExtResource("23_1i2yh")
+stretch_mode = 3
 
 [node name="GamePause" type="CenterContainer" parent="UI/Control_Game"]
 layout_mode = 1
@@ -6197,6 +6233,43 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="UI/Control_Game/GamePause"]
+layout_mode = 2
+theme_override_constants/separation = 20
+
+[node name="TextureRect" type="TextureRect" parent="UI/Control_Game/GamePause/VBoxContainer"]
+layout_mode = 2
+texture = ExtResource("25_2enqa")
+stretch_mode = 3
+
+[node name="TextureRect2" type="TextureRect" parent="UI/Control_Game/GamePause/VBoxContainer"]
+layout_mode = 2
+texture = ExtResource("17_100s0")
+
+[node name="Bth_Resume" type="TextureButton" parent="UI/Control_Game/GamePause/VBoxContainer"]
+process_mode = 3
+layout_mode = 2
+texture_normal = ExtResource("26_3dye2")
+texture_pressed = ExtResource("27_iwslt")
+texture_hover = ExtResource("28_ygprr")
+stretch_mode = 3
+
+[node name="Btn_Restart" type="TextureButton" parent="UI/Control_Game/GamePause/VBoxContainer"]
+process_mode = 3
+layout_mode = 2
+texture_normal = ExtResource("18_wcdsm")
+texture_pressed = ExtResource("19_r572s")
+texture_hover = ExtResource("20_ykgb0")
+stretch_mode = 3
+
+[node name="Btn_MainMenu" type="TextureButton" parent="UI/Control_Game/GamePause/VBoxContainer"]
+process_mode = 3
+layout_mode = 2
+texture_normal = ExtResource("21_nefnh")
+texture_pressed = ExtResource("22_t3iu8")
+texture_hover = ExtResource("23_1i2yh")
+stretch_mode = 3
 
 [node name="Coins" type="Node3D" parent="."]
 visible = false
@@ -6222,6 +6295,7 @@ navigation_mesh = SubResource("NavigationMesh_rplgd")
 [node name="Level" parent="NavigationRegion3D" instance=ExtResource("1_04uql")]
 
 [node name="GameLevel" type="Node3D" parent="."]
+script = ExtResource("26_lcb7s")
 
 [node name="Level_01" type="Node3D" parent="GameLevel"]
 script = ExtResource("19_haxd0")
@@ -6362,6 +6436,13 @@ material_override = SubResource("StandardMaterial3D_r5nfl")
 mesh = SubResource("QuadMesh_oioir")
 
 [connection signal="body_entered" from="Player/VisualNode/HitBox" to="Player/StateMachine/Attack" method="_on_hit_box_body_entered"]
+[connection signal="button_up" from="UI/Control_Game/GameFinish/VBoxContainer/Btn_Restart" to="GameLevel" method="_on_btn_restart_button_up"]
+[connection signal="button_up" from="UI/Control_Game/GameFinish/VBoxContainer/Btn_MainMenu" to="GameLevel" method="_on_btn_main_menu_button_up"]
+[connection signal="button_up" from="UI/Control_Game/GameOver/VBoxContainer/Btn_Restart" to="GameLevel" method="_on_btn_restart_button_up"]
+[connection signal="button_up" from="UI/Control_Game/GameOver/VBoxContainer/Btn_MainMenu" to="GameLevel" method="_on_btn_main_menu_button_up"]
+[connection signal="button_up" from="UI/Control_Game/GamePause/VBoxContainer/Bth_Resume" to="GameLevel" method="_on_bth_resume_button_up"]
+[connection signal="button_up" from="UI/Control_Game/GamePause/VBoxContainer/Btn_Restart" to="GameLevel" method="_on_btn_restart_button_up"]
+[connection signal="button_up" from="UI/Control_Game/GamePause/VBoxContainer/Btn_MainMenu" to="GameLevel" method="_on_btn_main_menu_button_up"]
 [connection signal="body_entered" from="GameLevel/Level_01/SpawnTiggerZone" to="GameLevel/Level_01" method="_on_spawn_tigger_zone_body_entered"]
 [connection signal="body_entered" from="GameLevel/Level_02/SpawnTiggerZone" to="GameLevel/Level_02" method="_on_spawn_tigger_zone_body_entered"]
 [connection signal="body_entered" from="GameLevel/Level_03/SpawnTiggerZone" to="GameLevel/Level_03" method="_on_spawn_tigger_zone_body_entered"]
