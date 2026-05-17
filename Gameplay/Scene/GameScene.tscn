@@ -6083,15 +6083,15 @@ light_energy = 0.5
 light_specular = 0.2
 omni_range = 3.0
 
-[node name="UI" type="Node3D" parent="."]
+[node name="UI" type="Node3D" parent="." node_paths=PackedStringArray("player")]
+script = ExtResource("7_gx2pu")
+player = NodePath("../Player")
 
-[node name="Control_GameplayUI" type="Control" parent="UI" node_paths=PackedStringArray("player")]
+[node name="Control_GameplayUI" type="Control" parent="UI"]
 layout_mode = 3
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
-script = ExtResource("7_gx2pu")
-player = NodePath("../../Player")
 
 [node name="HBoxContainer" type="HBoxContainer" parent="UI/Control_GameplayUI"]
 layout_mode = 1

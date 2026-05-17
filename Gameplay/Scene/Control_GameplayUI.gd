@@ -1,7 +1,7 @@
-extends Control
+extends Node3D
 
-@onready var coinLabel: Label = $HBoxContainer/Label
-@onready var healthBar: ProgressBar = $HBoxContainer_Health/ProgressBar
+@onready var coinLabel: Label = $Control_GameplayUI/HBoxContainer/Label
+@onready var healthBar: ProgressBar = $Control_GameplayUI/HBoxContainer_Health/ProgressBar
 @export var player: Node3D
 
 func _ready():
