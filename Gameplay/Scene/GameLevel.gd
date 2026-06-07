@@ -4,14 +4,20 @@ extends Node3D
 @export var gameUIManager: GameUIManager
 @onready var portal: Portal = $Portal
 
-# Called when the node enters the scene tree for the first time.
+var paused: bool :
+	set(new_value):
+		paused = new_value
+		gameUIManager.togglePauseUI(paused)
+		get_tree().paused = paused
+
 func _ready():
 	portal.playerReachedPortal.connect(gameIsFinished)
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta):
-	pass
+	if Input.is_action_just_pressed("Pause"):
+		paused = true
 
 func gameIsFinished():
 	get_tree().paused = true
@@ -26,4 +32,4 @@ func _on_btn_main_menu_button_up():
 
 
 func _on_bth_resume_button_up():
-	print('btn resume clicked')
+	paused = false
