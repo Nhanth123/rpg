@@ -5983,7 +5983,7 @@ mesh = SubResource("ArrayMesh_522yp")
 skin = SubResource("Skin_8vbkq")
 
 [node name="BoneAttachment3D" type="BoneAttachment3D" parent="Player/VisualNode/RootNode/LittleAdventurerAndie_GameRig/Skeleton3D"]
-transform = Transform3D(-0.982731, -0.182006, -0.0332738, 0.163547, -0.938593, 0.303786, -0.086524, 0.2931, 0.952154, -0.0120701, 0.0186617, 0.00883369)
+transform = Transform3D(-0.982731, -0.182006, -0.0332737, 0.163547, -0.938593, 0.303786, -0.086524, 0.2931, 0.952154, -0.0120701, 0.0186617, 0.00883369)
 bone_name = "DEF-hand.R"
 bone_idx = 67
 
@@ -5991,7 +5991,7 @@ bone_idx = 67
 transform = Transform3D(-0.00667074, 0.00340051, -0.0238524, 0.0239986, -0.00125771, -0.00689093, -0.00213729, -0.0247357, -0.00292871, 0, 0.002, -0.003)
 
 [node name="BoneAttachment3D2" type="BoneAttachment3D" parent="Player/VisualNode/RootNode/LittleAdventurerAndie_GameRig/Skeleton3D"]
-transform = Transform3D(-0.9141, 0.208866, -0.347552, -0.315291, -0.905083, 0.285325, -0.25497, 0.370396, 0.893193, 0.0120192, 0.0179877, 0.00960926)
+transform = Transform3D(-0.9141, 0.208866, -0.347552, -0.315291, -0.905083, 0.285325, -0.25497, 0.370396, 0.893192, 0.0120192, 0.0179877, 0.00960926)
 bone_name = "DEF-hand.L"
 bone_idx = 32
 
@@ -6295,8 +6295,10 @@ navigation_mesh = SubResource("NavigationMesh_rplgd")
 
 [node name="Level" parent="NavigationRegion3D" instance=ExtResource("1_04uql")]
 
-[node name="GameLevel" type="Node3D" parent="."]
+[node name="GameLevel" type="Node3D" parent="." node_paths=PackedStringArray("player", "gameUIManager")]
 script = ExtResource("26_lcb7s")
+player = NodePath("../Player")
+gameUIManager = NodePath("../UI")
 
 [node name="Level_01" type="Node3D" parent="GameLevel"]
 script = ExtResource("19_haxd0")

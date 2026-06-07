@@ -1,15 +1,21 @@
 extends Node3D
 
+@export var player: PlayerCharacter
+@export var gameUIManager: GameUIManager
+@onready var portal: Portal = $Portal
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	pass # Replace with function body.
+	portal.playerReachedPortal.connect(gameIsFinished)
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta):
 	pass
 
+func gameIsFinished():
+	get_tree().paused = true
+	gameUIManager.toggleGameFinishUI(true)
 
 func _on_btn_restart_button_up():
 	print('btn restart clicked')
