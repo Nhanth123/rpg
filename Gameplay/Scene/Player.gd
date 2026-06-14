@@ -24,6 +24,7 @@ var coinNumber: int:
 
 signal coinNumberUpdate(newValue)
 signal playerHealthUpdated(newValue, maxValue)
+var isDead: bool
 
 func _physics_process(_delta: float) -> void:
 	if not is_on_floor():
