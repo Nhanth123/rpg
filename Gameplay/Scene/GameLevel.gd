@@ -35,7 +35,6 @@ func _on_btn_restart_button_up():
 func _on_btn_main_menu_button_up():
 	for scene in get_tree().root.get_children():
 		scene.queue_free()
-
 	get_tree().paused = false
 	get_tree().change_scene_to_file("res://Gameplay/Scene/MainScene.tscn")
 
