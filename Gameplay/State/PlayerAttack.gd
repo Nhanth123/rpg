@@ -12,6 +12,14 @@ var damage: int = 10
 var slideSpeed: float = 500
 var remainSlideDuration: float
 var facingDir: Vector3
+var mousePosition: Vector2
+
+#func _init(event):
+	#if event is InputEventMouse:
+		#mousePosition = event.position
+
+#func rotateToMouseCursor():
+	
 
 func enableHitBox():
 	hitBoxCollisionShape.disabled = false
