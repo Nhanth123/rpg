@@ -3,9 +3,13 @@ extends CharacterBody3D
 
 const SPEED = 5.0
 
+var isDead: bool
+
 @onready var visual : Node3D = $VisualNode
 @onready var animationPlayer: AnimationPlayer = $VisualNode/AnimationPlayer
 @onready var footstepVFX: GPUParticles3D = $VisualNode/VFX/Footstep_GPUParticles3D
+@onready var footStepSFX: AudioStreamPlayer3D = $VisualNode/VFX/AudioStreamPlayer3D
+@onready var swordSlashSFX: AudioStreamPlayer3D = $VisualNode/VFX/SwordSlashSFX
 
 var direction : Vector3
 var slideKey_pressed: bool
@@ -15,16 +19,19 @@ var maxHealth: int = 100
 var currentHealth: int:
 	set(new_value):
 		currentHealth = new_value
-		emit_signal("playerHealthUpdated", currentHealth, maxHealth)
+		emit_signal('playerHealthUpdated', currentHealth, maxHealth)
 
 var coinNumber: int:
 	set(newValue):
 		coinNumber = newValue
 		emit_signal("coinNumberUpdate", coinNumber)
 
+
 signal coinNumberUpdate(newValue)
 signal playerHealthUpdated(newValue, maxValue)
-var isDead: bool
+
+func _ready() -> void:
+	currentHealth = maxHealth
 
 func _physics_process(_delta: float) -> void:
 	if not is_on_floor():
@@ -55,4 +62,12 @@ func takeDamage(damage: int, enemy_position: Vector3):
 func AddHealth(value: int):
 	currentHealth += value
 	currentHealth = clamp(currentHealth, 0, maxHealth)
+	
+func playFootStepsSFX():
+	footStepSFX.pitch_scale = randf_range(0.8 , 1.2)
+	footStepSFX.play()
+
+func playSwordSlashSFX():
+	#swordSlashSFX.pitch_scale = randf_range(0.8 , 1.2)
+	swordSlashSFX.play()
 	

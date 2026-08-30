@@ -7,8 +7,7 @@ extends StateBase
 @export var nextAttackState : String
 var can_attack_again : bool
 
-
-var damage: int = 10
+var damage: int = 40
 var slideSpeed: float = 500
 var remainSlideDuration: float
 var facingDir: Vector3
@@ -29,6 +28,27 @@ func disableHitBox():
 	hitBoxCollisionShape.disabled = true
 	#print("hit box disable = ", hitBoxCollisionShape.disabled)
 
+	
+func _input(Event):
+	if Event is InputEventMouse:
+		mousePosition = Event.position
+
+func rotateToMouseCursor():
+	var space_state = get_world_3d().direct_space_state
+	var camera = get_tree().root.get_camera_3d()
+	
+	var rayOrigin = camera.project_ray_origin(mousePosition)
+	var rayEnd = rayOrigin + camera.project_position(mousePosition,1000)
+	var query = PhysicsRayQueryParameters3D.create(rayOrigin,rayEnd)
+	var result = space_state.intersect_ray(query)
+	
+	if result.has("position"):
+		var lookPos = result["position"]
+		lookPos.y = global_position.y
+		var lookDir = lookPos - global_position
+		var lookDir2D = Vector2(lookDir.z , lookDir.x)
+		character.visual.rotation.y = lookDir2D.angle()
+
 
 func enter():
 	super.enter()
@@ -42,6 +62,7 @@ func enter():
 	bladeMaterialEffectAnimationPlayer.play("PlayBladeVFX")
 	
 	remainSlideDuration = animationPlayer.current_animation_length * 0.3
+	rotateToMouseCursor()
 
 func exit():
 	super.enter()
